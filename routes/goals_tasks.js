@@ -2,14 +2,14 @@ const express = require('express')
 const router = express.Router()
 const knex = require('../knex')
 
-/* GET all monsters record */
+/* GET all goal/task record */
 router.get('/', (req, res, next) => {
   knex('goals_tasks')
   .then(data => res.status(200).json(data))
   .catch(err => next(err))
 })
 
-/* GET single monsters record */
+/* GET single goal/task record */
 router.get('/:id', (req, res, next) => {
   knex('goals_tasks')
   .where('id', req.params.id)
@@ -17,18 +17,18 @@ router.get('/:id', (req, res, next) => {
   .catch(err => next(err))
 })
 
-/* POST new monsters record */
+/* POST new goal/task record */
 router.post('/', (req, res, next) => {
   const { goal_id, task_id } = req.body
 
   knex('goals_tasks')
-  .insert({ monster_id, user_id })
+  .insert({ goal_id, task_id })
   .returning('*')
   .then(([data]) => res.status(201).json(data))
   .catch(err => next(err))
 })
 
-/* PATCH specified monsters record */
+/* PATCH specified goal/task record */
 router.patch('/:id', (req, res, next) => {
   const { patchReq } = req
 

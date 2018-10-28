@@ -2,14 +2,14 @@ const express = require('express')
 const router = express.Router()
 const knex = require('../knex')
 
-/* GET all monsters record */
+/* GET all goals record */
 router.get('/', (req, res, next) => {
   knex('goals_users')
   .then(data => res.status(200).json(data))
   .catch(err => next(err))
 })
 
-/* GET single monsters record */
+/* GET single goals record */
 router.get('/:id', (req, res, next) => {
   knex('goals_users')
   .where('id', req.params.id)
@@ -17,18 +17,18 @@ router.get('/:id', (req, res, next) => {
   .catch(err => next(err))
 })
 
-/* POST new monsters record */
+/* POST new goals record */
 router.post('/', (req, res, next) => {
   const { goal_id, user_id } = req.body
 
   knex('goals_users')
-  .insert({ monster_id, user_id })
+  .insert({ goal_id, user_id })
   .returning('*')
   .then(([data]) => res.status(201).json(data))
   .catch(err => next(err))
 })
 
-/* PATCH specified monsters record */
+/* PATCH specified goals record */
 router.patch('/:id', (req, res, next) => {
   const { patchReq } = req
 
@@ -43,7 +43,7 @@ router.patch('/:id', (req, res, next) => {
   .catch(err => next(err))
 })
 
-/* DELETE specified monsters record */
+/* DELETE specified goals record */
 router.delete('/:id', (req, res, next) => {
   knex('goals_users')
   .where('id', req.params.id)
