@@ -67,10 +67,20 @@ router.get('/', (req, res, next) => {
 
 /* GET single goals record */
 router.get('/:id', validateUserID, (req, res, next) => {
+  let { id } = req.params
   knex('goals')
-  .where('id', req.params.id)
-  .then(([data]) => res.status(200).json(data))
-  .catch(err => next(err))
+  .where('id', id)
+  .then(([goal]) => {
+    knex('goals_tasks')
+    .where('goal_id', goal.id)
+    .then(tasks => {
+      goal['tasks'] = []
+      tasks.forEach(task => {
+        goal['tasks'].push(task.task_id)
+      })
+      res.status(200).json(goal)
+    })
+  })
 })
 
 /* POST new goals record */

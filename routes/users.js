@@ -82,35 +82,34 @@ router.get('/:id', validateUserID, (req, res, next) => {
     .then(monsters => {
       user["monsters"] = []
       monsters.forEach(monster => {
-        user["monsters"].push(monster.monster_id)
+        user['monsters'].push(monster.monster_id)
       })
     })
-    .then(data => {
+    .then(() => {
       knex('weapons_users')
       .where('user_id', user.id)
       .then(weapons => {
         console.log(weapons)
         user['weapons'] = []
         weapons.forEach(weapon => {
-          user["weapons"].push(weapon.weapon_id)
+          user[''].push(weapon.weapon_id)
         })
       })
     })
-    .then(data => {
+    .then(() => {
       knex('goals_users')
       .where('user_id', user.id)
       .then(goals => {
         console.log(goals)
         user['goals'] = []
         goals.forEach(goal => {
-          user["goals"].push(goal.goal_id)
+          user['goals'].push(goal.goal_id)
         })
         res.status(200).json(user)
       })
     })
   })
 })
-
 
 /* POST new user record */
 router.post('/', validatePostBody, (req, res, next) => {
