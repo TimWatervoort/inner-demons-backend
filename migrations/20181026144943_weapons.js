@@ -5,6 +5,8 @@ exports.up = function(knex, Promise) {
     table.string('name');
     table.string('description');
     table.integer('attack');
+    table.integer('chaos');
+    table.string('image');
     table.timestamps(true, true);
   });
 };

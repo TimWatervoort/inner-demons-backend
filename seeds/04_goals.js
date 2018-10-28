@@ -6,17 +6,17 @@ exports.seed = function(knex, Promise) {
       return knex('goals').insert([{
           id: 1,
           name: 'Lose Weight',
-          experience: 200
+          xp: 200
         },
         {
           id: 2,
           name: 'Learn to Play Guitar',
-          experience: 100
+          xp: 100
         },
         {
           id: 3,
           name: 'Learn a Language',
-          experience: 100
+          xp: 100
         }
       ]);
     })

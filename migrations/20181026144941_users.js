@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     table.integer('level').notNullable().defaultTo(1);
     table.integer('gold').notNullable().defaultTo(0);
     table.integer('hp').notNullable().defaultTo(10);
-    table.integer('experience').notNullable().defaultTo(0);
+    table.integer('xp').notNullable().defaultTo(0);
     table.integer('points_toward_pass').defaultTo(0);
     table.integer('passes').defaultTo(0);
     table.string('image');

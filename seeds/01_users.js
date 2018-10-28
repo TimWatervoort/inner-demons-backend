@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
           level: 1,
           gold: 10,
           hp: 10,
-          experience: 0,
+          xp: 0,
           points_toward_pass: 0,
           passes: 0,
           image: ''
@@ -20,7 +20,7 @@ exports.seed = function(knex, Promise) {
           level: 1,
           gold: 10,
           hp: 10,
-          experience: 0,
+          xp: 0,
           points_toward_pass: 0,
           passes: 0,
           image: ''
@@ -31,7 +31,7 @@ exports.seed = function(knex, Promise) {
           level: 1,
           gold: 10,
           hp: 10,
-          experience: 0,
+          xp: 0,
           points_toward_pass: 0,
           passes: 0,
           image: ""
