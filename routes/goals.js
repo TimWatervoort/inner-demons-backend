@@ -53,6 +53,9 @@ const buildPatchReq = (req, res, next) => {
     return res.status(400).json({ error: { message: `Empty or invalid patch request` } })
   }
 
+  // Every patch update will create a new 'updated_at' timestamp
+  patchReq.updated_at = new Date()
+
   // Stores the patch request-object into next request
   req.patchReq = patchReq
   next()
