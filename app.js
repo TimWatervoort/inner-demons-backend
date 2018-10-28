@@ -10,6 +10,11 @@ var monstersRouter = require('./routes/monsters');
 var weaponsRouter = require('./routes/weapons');
 var goalsRouter = require('./routes/goals');
 var tasksRouter = require('./routes/tasks');
+var monsters_usersRouter = require('./routes/monsters_users');
+var weapons_usersRouter = require('./routes/weapons_users');
+var goals_usersRouter = require('./routes/goals_users');
+var goals_tasksRouter = require('./routes/goals_tasks');
+
 
 var app = express();
 
@@ -29,6 +34,12 @@ app.use('/monsters', monstersRouter);
 app.use('/weapons', weaponsRouter);
 app.use('/goals', goalsRouter);
 app.use('/tasks', tasksRouter);
+app.use('/monsters_users', monsters_usersRouter)
+app.use('/weapons_users', weapons_usersRouter)
+app.use('/goals_users', goals_usersRouter)
+app.use('/goals_tasks', goals_tasksRouter)
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
