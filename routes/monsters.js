@@ -24,7 +24,7 @@ const validatePostBody = (req, res, next) => {
     image: Joi.string().uri().required()
   })
 
-  const {error, value} = Joi.validate(req.body, postSchema)
+  const { error } = Joi.validate(req.body, postSchema)
 
   if (error) {
     return res.status(400).json({ "POST Schema Error": { message: error.details[0].message } })
@@ -113,7 +113,6 @@ router.delete('/:id', validateUserID, (req, res, next) => {
   .del()
   .returning('*')
   .then(([data]) => {
-    console.log('deleted', data)
     res.status(200).json({ deleted: data })
   })
 })
