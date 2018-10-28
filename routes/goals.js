@@ -5,7 +5,7 @@ const knex = require('../knex')
 const Joi = require('joi')
 
 const validateUserID = (req, res, next) => {
-  knex('weapons')
+  knex('goals')
   .where('id', req.params.id)
   .then(([data]) => {
     if (!data) {
@@ -18,8 +18,7 @@ const validateUserID = (req, res, next) => {
 const validatePostBody = (req, res, next) => {
   const postSchema = Joi.object().keys({
     name: Joi.string().required(),
-    description: Joi.string().required(),
-    attack: Joi.number().integer().required()
+    experience: Joi.number().integer().required()
   })
 
   const { error } = Joi.validate(req.body, postSchema)
@@ -33,8 +32,7 @@ const validatePostBody = (req, res, next) => {
 const buildPatchReq = (req, res, next) => {
   const patchSchema = Joi.object().keys({
     name: Joi.string(),
-    description: Joi.string(),
-    attack: Joi.number().integer()
+    experience: Joi.number().integer()
   })
 
   const { error } = Joi.validate(req.body, patchSchema)
@@ -42,7 +40,7 @@ const buildPatchReq = (req, res, next) => {
     return res.status(400).json({ "PATCH Schema Error": { message: error.details[0].message } })
   }
 
-  const allowedPatchKeys = ['name', 'description', 'attack']
+  const allowedPatchKeys = ['name', 'experience']
 
   // Constructs the patch request object
   let patchReq = {}
@@ -60,16 +58,16 @@ const buildPatchReq = (req, res, next) => {
   next()
 }
 
-/* GET all weapons record */
+/* GET all goals record */
 router.get('/', (req, res, next) => {
-  knex('weapons')
+  knex('goals')
   .then(data => res.status(200).json(data))
   .catch(err => next(err))
 })
 
 /* GET single user record */
 router.get('/:id', validateUserID, (req, res, next) => {
-  knex('weapons')
+  knex('goals')
   .where('id', req.params.id)
   .then(([data]) => res.status(200).json(data))
   .catch(err => next(err))
@@ -77,10 +75,10 @@ router.get('/:id', validateUserID, (req, res, next) => {
 
 /* POST new user record */
 router.post('/', validatePostBody, (req, res, next) => {
-  const { name, description, attack } = req.body
+  const { name, experience } = req.body
 
-  knex('weapons')
-  .insert({ name, description, attack})
+  knex('goals')
+  .insert({ name, experience })
   .returning('*')
   .then(([data]) => res.status(201).json(data))
   .catch(err => next(err))
@@ -90,7 +88,7 @@ router.post('/', validatePostBody, (req, res, next) => {
 router.patch('/:id', validateUserID, buildPatchReq, (req, res, next) => {
   const { patchReq } = req
 
-  knex('weapons')
+  knex('goals')
   .where('id', req.params.id)
   .first()
   .update(patchReq)
@@ -103,7 +101,7 @@ router.patch('/:id', validateUserID, buildPatchReq, (req, res, next) => {
 
 /* DELETE specified user record */
 router.delete('/:id', validateUserID, (req, res, next) => {
-  knex('weapons')
+  knex('goals')
   .where('id', req.params.id)
   .first()
   .del()
