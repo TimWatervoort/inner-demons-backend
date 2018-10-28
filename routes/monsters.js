@@ -2,8 +2,10 @@ const express = require('express')
 const router = express.Router()
 const knex = require('../knex')
 
+const Joi = require('joi')
+
 const validateUserID = (req, res, next) => {
-  knex('users')
+  knex('monsters')
   .where('id', req.params.id)
   .then(([data]) => {
     if (!data) {
@@ -14,18 +16,37 @@ const validateUserID = (req, res, next) => {
 }
 
 const validatePostBody = (req, res, next) => {
-  // Pull user-inputed name and image-link from request
-  let { name, image } = req.body
+  const postSchema = Joi.object().keys({
+    name: Joi.string().required(),
+    description: Joi.string().required(),
+    attack: Joi.number().integer().required(),
+    hp: Joi.number().integer().required(),
+    image: Joi.string().uri().required()
+  })
 
-  // If either name or image are not defined in POST request, respond with an error
-  if (!name || !image ) {
-    return res.status(400).json({ error: { message: `No name or image in post request` } })
+  const {error, value} = Joi.validate(req.body, postSchema)
+
+  if (error) {
+    return res.status(400).json({ "POST Schema Error": { message: error.details[0].message } })
   }
   next()
 }
 
 const buildPatchReq = (req, res, next) => {
-  const allowedPatchKeys = ['name', 'level', 'gold', 'hp', 'experience', 'points_toward_pass', 'passes', 'image']
+  const patchSchema = Joi.object().keys({
+    name: Joi.string(),
+    description: Joi.string(),
+    attack: Joi.number().integer(),
+    hp: Joi.number().integer(),
+    image: Joi.string().uri()
+  })
+
+  const { error } = Joi.validate(req.body, patchSchema)
+  if (error) {
+    return res.status(400).json({ "PATCH Schema Error": { message: error.details[0].message } })
+  }
+
+  const allowedPatchKeys = ['name', 'description', 'attack', 'hp', 'image']
 
   // Constructs the patch request object
   let patchReq = {}
@@ -43,16 +64,16 @@ const buildPatchReq = (req, res, next) => {
   next()
 }
 
-/* GET all users record */
+/* GET all monsters record */
 router.get('/', (req, res, next) => {
-  knex('users')
+  knex('monsters')
   .then(data => res.status(200).json(data))
   .catch(err => next(err))
 })
 
 /* GET single user record */
 router.get('/:id', validateUserID, (req, res, next) => {
-  knex('users')
+  knex('monsters')
   .where('id', req.params.id)
   .then(([data]) => res.status(200).json(data))
   .catch(err => next(err))
@@ -60,10 +81,10 @@ router.get('/:id', validateUserID, (req, res, next) => {
 
 /* POST new user record */
 router.post('/', validatePostBody, (req, res, next) => {
-  const { name, image } = req.body
+  const { name, description, attack, hp, image } = req.body
 
-  knex('users')
-  .insert({name, image})
+  knex('monsters')
+  .insert({ name, description, attack, hp, image })
   .returning('*')
   .then(([data]) => res.status(201).json(data))
   .catch(err => next(err))
@@ -73,7 +94,7 @@ router.post('/', validatePostBody, (req, res, next) => {
 router.patch('/:id', validateUserID, buildPatchReq, (req, res, next) => {
   const { patchReq } = req
 
-  knex('users')
+  knex('monsters')
   .where('id', req.params.id)
   .first()
   .update(patchReq)
@@ -86,7 +107,7 @@ router.patch('/:id', validateUserID, buildPatchReq, (req, res, next) => {
 
 /* DELETE specified user record */
 router.delete('/:id', validateUserID, (req, res, next) => {
-  knex('users')
+  knex('monsters')
   .where('id', req.params.id)
   .first()
   .del()
