@@ -73,11 +73,44 @@ router.get('/', (req, res, next) => {
 
 /* GET single user record */
 router.get('/:id', validateUserID, (req, res, next) => {
+  let { id } = req.params
   knex('users')
-  .where('id', req.params.id)
-  .then(([data]) => res.status(200).json(data))
-  .catch(err => next(err))
+  .where('id', id)
+  .then(([user]) => {
+    knex('monsters_users')
+    .where('user_id', user.id)
+    .then(monsters => {
+      user["monsters"] = []
+      monsters.forEach(monster => {
+        user["monsters"].push(monster.monster_id)
+      })
+    })
+    .then(data => {
+      knex('weapons_users')
+      .where('user_id', user.id)
+      .then(weapons => {
+        console.log(weapons)
+        user['weapons'] = []
+        weapons.forEach(weapon => {
+          user["weapons"].push(weapon.weapon_id)
+        })
+      })
+    })
+    .then(data => {
+      knex('goals_users')
+      .where('user_id', user.id)
+      .then(goals => {
+        console.log(goals)
+        user['goals'] = []
+        goals.forEach(goal => {
+          user["goals"].push(goal.goal_id)
+        })
+        res.status(200).json(user)
+      })
+    })
+  })
 })
+
 
 /* POST new user record */
 router.post('/', validatePostBody, (req, res, next) => {
