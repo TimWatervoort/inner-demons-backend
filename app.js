@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 var monstersRouter = require('./routes/monsters');
 var weaponsRouter = require('./routes/weapons');
 var goalsRouter = require('./routes/goals');
-
+var tasksRouter = require('./routes/tasks');
 
 var app = express();
 
@@ -28,6 +28,7 @@ app.use('/users', usersRouter);
 app.use('/monsters', monstersRouter);
 app.use('/weapons', weaponsRouter);
 app.use('/goals', goalsRouter);
+app.use('/tasks', tasksRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

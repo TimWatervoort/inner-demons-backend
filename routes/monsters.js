@@ -71,7 +71,7 @@ router.get('/', (req, res, next) => {
   .catch(err => next(err))
 })
 
-/* GET single user record */
+/* GET single monsters record */
 router.get('/:id', validateUserID, (req, res, next) => {
   knex('monsters')
   .where('id', req.params.id)
@@ -79,7 +79,7 @@ router.get('/:id', validateUserID, (req, res, next) => {
   .catch(err => next(err))
 })
 
-/* POST new user record */
+/* POST new monsters record */
 router.post('/', validatePostBody, (req, res, next) => {
   const { name, description, attack, hp, image } = req.body
 
@@ -90,7 +90,7 @@ router.post('/', validatePostBody, (req, res, next) => {
   .catch(err => next(err))
 })
 
-/* PATCH specified user record */
+/* PATCH specified monsters record */
 router.patch('/:id', validateUserID, buildPatchReq, (req, res, next) => {
   const { patchReq } = req
 
@@ -105,7 +105,7 @@ router.patch('/:id', validateUserID, buildPatchReq, (req, res, next) => {
   .catch(err => next(err))
 })
 
-/* DELETE specified user record */
+/* DELETE specified monsters record */
 router.delete('/:id', validateUserID, (req, res, next) => {
   knex('monsters')
   .where('id', req.params.id)
@@ -113,6 +113,7 @@ router.delete('/:id', validateUserID, (req, res, next) => {
   .del()
   .returning('*')
   .then(([data]) => {
+    console.log('deleted', data)
     res.status(200).json({ deleted: data })
   })
 })

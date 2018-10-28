@@ -65,7 +65,7 @@ router.get('/', (req, res, next) => {
   .catch(err => next(err))
 })
 
-/* GET single user record */
+/* GET single goals record */
 router.get('/:id', validateUserID, (req, res, next) => {
   knex('goals')
   .where('id', req.params.id)
@@ -73,7 +73,7 @@ router.get('/:id', validateUserID, (req, res, next) => {
   .catch(err => next(err))
 })
 
-/* POST new user record */
+/* POST new goals record */
 router.post('/', validatePostBody, (req, res, next) => {
   const { name, experience } = req.body
 
@@ -84,7 +84,7 @@ router.post('/', validatePostBody, (req, res, next) => {
   .catch(err => next(err))
 })
 
-/* PATCH specified user record */
+/* PATCH specified goals record */
 router.patch('/:id', validateUserID, buildPatchReq, (req, res, next) => {
   const { patchReq } = req
 
@@ -99,7 +99,7 @@ router.patch('/:id', validateUserID, buildPatchReq, (req, res, next) => {
   .catch(err => next(err))
 })
 
-/* DELETE specified user record */
+/* DELETE specified goals record */
 router.delete('/:id', validateUserID, (req, res, next) => {
   knex('goals')
   .where('id', req.params.id)

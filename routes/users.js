@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const knex = require('../knex')
 
+const Joi = require('joi')
+
 const validateUserID = (req, res, next) => {
   knex('users')
   .where('id', req.params.id)
@@ -14,17 +16,36 @@ const validateUserID = (req, res, next) => {
 }
 
 const validatePostBody = (req, res, next) => {
-  // Pull user-inputed name and image-link from request
-  let { name, image } = req.body
+  const postSchema = Joi.object().keys({
+    name: Joi.string().required(),
+    image: Joi.string().uri().required()
+  })
 
-  // If either name or image are not defined in POST request, respond with an error
-  if (!name || !image ) {
-    return res.status(400).json({ error: { message: `No name or image in post request` } })
+  const { error } = Joi.validate(req.body, postSchema)
+
+  if (error) {
+    return res.status(400).json({ "POST Schema Error": { message: error.details[0].message } })
   }
   next()
 }
 
 const buildPatchReq = (req, res, next) => {
+  const patchSchema = Joi.object().keys({
+    name: Joi.string(),
+    level: Joi.number().integer(),
+    gold: Joi.number().integer(),
+    hp: Joi.number().integer(),
+    experience: Joi.number().integer(),
+    points_toward_pass: Joi.number().integer(),
+    passes: Joi.number().integer(),
+    image: Joi.string().uri()
+  })
+
+  const { error } = Joi.validate(req.body, patchSchema)
+  if (error) {
+    return res.status(400).json({ "PATCH Schema Error": { message: error.details[0].message } })
+  }
+
   const allowedPatchKeys = ['name', 'level', 'gold', 'hp', 'experience', 'points_toward_pass', 'passes', 'image']
 
   // Constructs the patch request object
