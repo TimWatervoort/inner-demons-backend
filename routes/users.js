@@ -92,10 +92,9 @@ router.get('/:id', validateUserID, (req, res, next) => {
       knex('weapons_users')
       .where('user_id', user.id)
       .then(weapons => {
-        console.log(weapons)
         user['weapons'] = []
         weapons.forEach(weapon => {
-          user[''].push(weapon.weapon_id)
+          user['weapons'].push(weapon.weapon_id)
         })
       })
     })
@@ -103,7 +102,6 @@ router.get('/:id', validateUserID, (req, res, next) => {
       knex('goals_users')
       .where('user_id', user.id)
       .then(goals => {
-        console.log(goals)
         user['goals'] = []
         goals.forEach(goal => {
           user['goals'].push(goal.goal_id)
@@ -152,4 +150,4 @@ router.delete('/:id', validateUserID, (req, res, next) => {
   })
 })
 
-module.exports = router;
+module.exports = router

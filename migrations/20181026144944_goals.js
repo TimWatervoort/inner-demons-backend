@@ -6,8 +6,8 @@ exports.up = function(knex, Promise) {
     table.integer('xp').notNullable().defaultTo(0)
     table.timestamps(true, true)
   })
-};
+}
 
 exports.down = function(knex, Promise) {
   return knex.schema.dropTableIfExists('goals')
-};
+}

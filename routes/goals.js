@@ -124,4 +124,4 @@ router.delete('/:id', validateUserID, (req, res, next) => {
   })
 })
 
-module.exports = router;
+module.exports = router

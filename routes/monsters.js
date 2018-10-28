@@ -113,9 +113,8 @@ router.delete('/:id', validateUserID, (req, res, next) => {
   .del()
   .returning('*')
   .then(([data]) => {
-    console.log('deleted', data)
     res.status(200).json({ deleted: data })
   })
 })
 
-module.exports = router;
+module.exports = router
