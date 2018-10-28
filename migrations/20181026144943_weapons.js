@@ -7,7 +7,6 @@ exports.up = function(knex, Promise) {
     table.integer('attack');
     table.integer('chaos');
     table.string('image');
-    table.timestamps(true, true);
   });
 };
 
