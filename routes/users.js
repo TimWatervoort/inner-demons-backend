@@ -35,7 +35,7 @@ const buildPatchReq = (req, res, next) => {
     level: Joi.number().integer(),
     gold: Joi.number().integer(),
     hp: Joi.number().integer(),
-    experience: Joi.number().integer(),
+    xp: Joi.number().integer(),
     points_toward_pass: Joi.number().integer(),
     passes: Joi.number().integer(),
     image: Joi.string().uri()
@@ -46,7 +46,7 @@ const buildPatchReq = (req, res, next) => {
     return res.status(400).json({ "PATCH Schema Error": { message: error.details[0].message } })
   }
 
-  const allowedPatchKeys = ['name', 'level', 'gold', 'hp', 'experience', 'points_toward_pass', 'passes', 'image']
+  const allowedPatchKeys = ['name', 'level', 'gold', 'hp', 'xp', 'points_toward_pass', 'passes', 'image']
 
   // Constructs the patch request object
   let patchReq = {}
@@ -84,7 +84,7 @@ router.post('/', validatePostBody, (req, res, next) => {
   const { name, image } = req.body
 
   knex('users')
-  .insert({name, image})
+  .insert({ name, image })
   .returning('*')
   .then(([data]) => res.status(201).json(data))
   .catch(err => next(err))

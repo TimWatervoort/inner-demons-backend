@@ -18,7 +18,7 @@ const validateUserID = (req, res, next) => {
 const validatePostBody = (req, res, next) => {
   const postSchema = Joi.object().keys({
     name: Joi.string().required(),
-    experience: Joi.number().integer().required()
+    xp: Joi.number().integer().required()
   })
 
   const { error } = Joi.validate(req.body, postSchema)
@@ -32,7 +32,7 @@ const validatePostBody = (req, res, next) => {
 const buildPatchReq = (req, res, next) => {
   const patchSchema = Joi.object().keys({
     name: Joi.string(),
-    experience: Joi.number().integer()
+    xp: Joi.number().integer()
   })
 
   const { error } = Joi.validate(req.body, patchSchema)
@@ -40,7 +40,7 @@ const buildPatchReq = (req, res, next) => {
     return res.status(400).json({ "PATCH Schema Error": { message: error.details[0].message } })
   }
 
-  const allowedPatchKeys = ['name', 'experience']
+  const allowedPatchKeys = ['name', 'xp']
 
   // Constructs the patch request object
   let patchReq = {}
@@ -53,7 +53,7 @@ const buildPatchReq = (req, res, next) => {
     return res.status(400).json({ error: { message: `Empty or invalid patch request` } })
   }
 
-  // Stores the patch request object into request
+  // Stores the patch request-object into next request
   req.patchReq = patchReq
   next()
 }
@@ -75,10 +75,10 @@ router.get('/:id', validateUserID, (req, res, next) => {
 
 /* POST new goals record */
 router.post('/', validatePostBody, (req, res, next) => {
-  const { name, experience } = req.body
+  const { name, xp } = req.body
 
   knex('goals')
-  .insert({ name, experience })
+  .insert({ name, xp })
   .returning('*')
   .then(([data]) => res.status(201).json(data))
   .catch(err => next(err))
