@@ -2,6 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('users', table => {
     table.increments()
+    table.integer('github_id')
     table.string('name').notNullable()
     table.integer('level').notNullable().defaultTo(1)
     table.integer('gold').notNullable().defaultTo(0)

@@ -19,7 +19,9 @@ const validatePostBody = (req, res, next) => {
   const postSchema = Joi.object().keys({
     name: Joi.string().required(),
     description: Joi.string().required(),
-    attack: Joi.number().integer().required()
+    attack: Joi.number().integer().required(),
+    chaos: Joi.number().integer().required(),
+    image: Joi.string().uri().required()
   })
 
   const { error } = Joi.validate(req.body, postSchema)
