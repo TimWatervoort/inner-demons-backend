@@ -62,6 +62,7 @@ passport.use(new GitHubStrategy(
 
     authUtil.findGitHubUser(profile._json.id)
     .then(result => {
+      console.log(result)
       if (result) {
         console.log(result)
         // This *should* pull in the user info from the db

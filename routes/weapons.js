@@ -19,9 +19,10 @@ const validatePostBody = (req, res, next) => {
   const postSchema = Joi.object().keys({
     name: Joi.string().required(),
     description: Joi.string().required(),
+    chaos: Joi.number().integer(),
     attack: Joi.number().integer().required(),
-    chaos: Joi.number().integer().required(),
-    image: Joi.string().uri().required()
+    cost: Joi.number().integer().required(),
+    image: Joi.string().uri()
   })
 
   const { error } = Joi.validate(req.body, postSchema)
@@ -38,6 +39,7 @@ const buildPatchReq = (req, res, next) => {
     description: Joi.string(),
     attack: Joi.number().integer(),
     chaos: Joi.number().integer(),
+    attack: Joi.number().integer().required(),
     image: Joi.string().uri()
   })
 
@@ -46,7 +48,7 @@ const buildPatchReq = (req, res, next) => {
     return res.status(400).json({ "PATCH Schema Error": { message: error.details[0].message } })
   }
 
-  const allowedPatchKeys = ['name', 'description', 'attack', 'chaos', 'image']
+  const allowedPatchKeys = ['name', 'description', 'attack', 'chaos', 'cost', 'image']
 
   // Constructs the patch request object
   let patchReq = {}
@@ -81,10 +83,10 @@ router.get('/:id', validateUserID, (req, res, next) => {
 
 /* POST new weapons record */
 router.post('/', validatePostBody, (req, res, next) => {
-  const { name, description, attack, chaos, image } = req.body
+  const { name, description, attack, chaos, cost, image } = req.body
 
   knex('weapons')
-  .insert({ name, description, attack, chaos, image })
+  .insert({ name, description, attack, chaos, cost,  image })
   .returning('*')
   .then(([data]) => res.status(201).json(data))
   .catch(err => next(err))
