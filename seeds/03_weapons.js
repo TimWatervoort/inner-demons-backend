@@ -9,7 +9,8 @@ exports.seed = function(knex, Promise) {
           description: 'The look that hurts the most.',
           attack: 2,
           chaos: 1,
-          image: ''
+          image: '',
+          cost: 10
         },
         {
           id: 2,
@@ -17,7 +18,8 @@ exports.seed = function(knex, Promise) {
           description: 'Just a shoe',
           attack: 2,
           chaos: 1,
-          image: ''
+          image: '',
+          cost: 10
         },
         {
           id: 3,
@@ -25,7 +27,8 @@ exports.seed = function(knex, Promise) {
           description: 'Your right hand curled into a ball.  Dude, find a new weapon.',
           attack: 2,
           chaos: 1,
-          image: ''
+          image: '',
+          cost: 10
         }
       ]);
     })

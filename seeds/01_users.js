@@ -5,14 +5,14 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('users').insert([{
           id: 1,
-          name: 'TimRemingtonSux',
+          name: 'GaryBusey',
           level: 1,
           gold: 10,
           hp: 10,
           xp: 0,
           points_toward_pass: 0,
           passes: 0,
-          image: ''
+          image: 'https://m.media-amazon.com/images/M/MV5BMTQ2NjM5NjE5NF5BMl5BanBnXkFtZTYwNTk3MjUz._V1_UY317_CR0,0,214,317_AL_.jpg'
         },
         {
           id: 2,
