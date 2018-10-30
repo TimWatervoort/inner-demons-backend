@@ -40,6 +40,7 @@ const buildPatchReq = (req, res, next) => {
     attack: Joi.number().integer(),
     chaos: Joi.number().integer(),
     attack: Joi.number().integer(),
+    cost: Joi.number().integer(),
     image: Joi.string().regex(/\/.*\.png/)
   })
 
