@@ -18,7 +18,7 @@ function userAttack(ally, weapon, user, enemy) {
   damage += criticalAlly(damage, ally.attack, user.level, ally.name)
   let x = Math.floor(Math.random()*attacks.length);
 
-  setHere.innerHTML += `<br>You ${attacks[x]} ${enemy.name} for ${damage} damage!`
+  setHere.innerHTML += `<hr>You ${attacks[x]} ${enemy.name} for ${damage} damage!`
   console.log("You hit for: ", damage)
   return damage
 }
