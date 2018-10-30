@@ -39,6 +39,11 @@ body {
   margin: 10px;
 }
 
+.goldImage {
+  width: 15px;
+  height: 15px;
+}
+
 .weaponImg {
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
