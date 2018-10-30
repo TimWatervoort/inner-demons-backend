@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>The Admin Page!</title>
+
+  <!-- Links -->
+  <link href="https://fonts.googleapis.com/css?family=Aladin" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <!-- Scripts -->
+  <script src="../scripts/admin.js" charset="utf-8"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body style="background-color: #85929E; font-family: 'Aladin'">
+  <h1 style="text-align: center;">WELCOME TO THE ADMIN PAGE MORTAL</h1>
+
+  <br></br>
+
+  <h3>Weapons Table</h3>
+
+  <table id="weapons-table" class="table table-dark">
+    <thead>
+      <tr>
+        <th><h5>Name</h5></th>
+        <th><h5>Description</h5></th>
+        <th><h5>Attack</h5></th>
+        <th><h5>Chaos</h5></th>
+        <th><h5>Image</h5></th>
+        <th><h5>Edit</h5></th>
+        <th><h5>Delete</h5></th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <br></br>
+
+  <h3>Monsters Table</h3>
+
+
+  <table id="monsters-table" class="table table-dark">
+    <thead>
+      <tr>
+        <th><h5>Name</h5></th>
+        <th><h5>Description</h5></th>
+        <th><h5>Attack</h5></th>
+        <th><h5>HP</h5></th>
+        <th><h5>Image</h5></th>
+        <th><h5>Edit</h5></th>
+        <th><h5>Delete</h5></th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <br></br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- Create Weapon Form -->
+        <form id="create-weapon">
+          <label for="name">Weapon Name: </label>
+          <input type="text" name="name" id="weapon-name" required><br>
+
+          <label for="description">Weapon Description: </label>
+          <input type="text" name="description" id="weapon-description" required><br>
+
+          <label for="attack">Weapon Attack: </label>
+          <input type="number" name="attack" id="weapon-attack" required><br>
+
+          <label for="chaos">Weapon Chaos: </label>
+          <input type="number" name="chaos" id="weapon-chaos" required><br>
+
+          <label for="cost">Weapon Cost: </label>
+          <input type="number" name="cost" id="weapon-cost" required><br>
+
+          <label for="image">Weapon Image: </label>
+          <input type="text" name="image" id="weapon-image" required><br>
+
+          <input type="submit" value="Create Weapon" id="submit-weapon">
+        </form>
+
+        <!-- Edit Weapon Form -->
+        <form id="edit-weapon">
+          <label for="name">Weapon Name: </label>
+          <input type="text" name="name" id="edit-weapon-name" required><br>
+
+          <label for="description">Weapon Description: </label>
+          <input type="text" name="description" id="edit-weapon-description" required><br>
+
+          <label for="attack">Weapon Attack: </label>
+          <input type="number" name="attack" id="edit-weapon-attack" required><br>
+
+          <label for="chaos">Weapon Chaos: </label>
+          <input type="number" name="chaos" id="edit-weapon-chaos" required><br>
+
+          <label for="cost">Weapon Cost: </label>
+          <input type="number" name="cost" id="edit-weapon-cost" required><br>
+
+          <label for="image">Weapon Image: </label>
+          <input type="text" name="image" id="edit-weapon-image" required><br>
+
+          <input type="submit" value="Edit Weapon" id="submit-edit-weapon">
+        </form>
+      </div>
+
+      <br></br>
+
+      <div class="col">
+        <!-- Create Monster Form -->
+        <form id="create-monster">
+          <label for="name">Monster Name: </label>
+          <input type="text" name="name" id="monster-name" required><br>
+
+          <label for="description">Monster Description: </label>
+          <input type="text" name="description" id="monster-description" required><br>
+
+          <label for="attack"> Monster Attack: </label>
+          <input type="number" name="attack" id="monster-attack" required><br>
+
+          <label for="hp"> Monster HP: </label>
+          <input type="number" name="hp" id="monster-hp" required><br>
+
+          <label for="image"> Monster Image: </label>
+          <input type="text" name="image" id="monster-image" required><br>
+
+          <input type="submit" value="Create Monster" id="submit-monster">
+        </form>
+
+        <!-- Edit Monster Form -->
+        <form id="edit-monster">
+          <label for="name">Monster Name: </label>
+          <input type="text" name="name" id="edit-monster-name" required><br>
+
+          <label for="description">Monster Description: </label>
+          <input type="text" name="description" id="edit-monster-description" required><br>
+
+          <label for="attack"> Monster Attack: </label>
+          <input type="number" name="attack" id="edit-monster-attack" required><br>
+
+          <label for="hp"> Monster HP: </label>
+          <input type="number" name="hp" id="edit-monster-hp" required><br>
+
+          <label for="image"> Monster Image: </label>
+          <input type="text" name="image" id="edit-monster-image" required><br>
+
+          <input type="submit" value="Edit Monster" id="submit-edit-monster">
+        </form>
+
+      </div>
+    </div>
+
+
+  <br></br>
+
+  <img src="https://geekandsundry.com/wp-content/uploads/2016/06/Dungeon-Master.jpg" class="center">
+</body>
+
+</html>

@@ -5,7 +5,7 @@ const knex = require('../knex')
 router.get('/', (req, res, next) => {
   console.log(re)
   console.log('Successful Login')
-  res.render('index')
+  res.send('../public/index.html')
 })
 
 

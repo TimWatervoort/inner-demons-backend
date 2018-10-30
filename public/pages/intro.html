@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+  <link rel="icon" href="../occult-icons_skull-512.png" sizes="any" type='image/png'>
+  <link rel="stylesheet" href="../styles/style.css">
+  <title>Inner Demons</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="../index.html">Inner<i class="fas fa-skull-crossbones"></i>Demons</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="battle.html"><i class="fas fa-fist-raised"></i> Battle</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="shop.html"><i class="fas fa-dollar-sign"></i> Shop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="goals.html"><i class="fas fa-flag-checkered"></i> Add Goals</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="intro.html"><i class="fas fa-book-dead"></i> About</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <form class = 'my-2 text-center mx-auto' id='fullForm'>
+    <input type='text' placeholder='username' autocomplete="off" id='usernameField'>
+    <button class='btn btn-dark' type = 'submit' id='subBut'>SUBMIT</button>
+  </form>
+
+  <div class='container mx-auto my-5 text-white p-3 text-center bg-dark'>
+    <h3>Welcome to Inner Demons!</h3>
+    <strong>Inner Demons</strong> lets you fight terrifying raid bosses and buy exotic weapons when you work towards your personal goals.<br><br>
+    <strong>How to use this app:</strong><br><br>
+    <strong>Goals</strong> are broken down into <strong>tasks</strong>.<br><br>
+    <strong>Goals</strong> give you experience. When you have enough experience, you level up and gain access to more weapons and enemies.<br><br>
+    <strong>Tasks</strong> give you gold. You can use this gold to buy exciting new weapons.</br><br> On the homepage, click your <strong>tasks</strong> to complete them for the day and cash in on your gold.<br> When you have finished all of one goal's
+    tasks, you can click <strong>COMPLETE</strong> to finish your task for the day and earn your experience.<br><br> When you're ready, head over to the <strong>battle</strong> page to take on enemies!<br><br>
+    When you defeat an enemy, you gain them as an ally, and they can help you in future battles!
+  </div>
+
+  <script src="../scripts/intro.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>

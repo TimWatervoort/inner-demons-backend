@@ -1,0 +1,41 @@
+body {
+  font-family: 'Courier New';
+  background-color: black;
+}
+
+#userBio {
+  background-color: rgba(255,255,255, 0.9);
+  border-radius: 4px;
+  border: 1px solid grey;
+  width: 800px;
+
+}
+
+#userImg {
+  border-radius: 10px;
+  border: 3px solid black;
+}
+
+.dropdown-btn {
+  width: 200px;
+}
+
+.card-body {
+  width: 300px;
+}
+
+.card {
+  width: 300px;
+  height: 600px;
+  margin-top: 10px;
+}
+
+.goalBut{
+  width: 200px;
+  margin: 10px;
+}
+
+.weaponImg {
+  width: 150px;
+  height: auto;
+}
