@@ -62,10 +62,10 @@ function makeMonsterCard(data) {
     let item = col.appendChild(makeDiv(['card']));
     item.appendChild(makeImg(x.image));
     item.appendChild(makeDiv(['card-body', 'text-center', 'd-flex', 'flex-column']))
-      .innerHTML = `<h5 class = 'text-center mx-auto'>${x.name}</h5>
-  <p class = 'text-center mx-auto mt-auto'>${x.description}</p>
-  <p class = 'text-center mx-auto mt-auto'>Attack: ${x.attack}</p>
-  <p class = 'text-center mx-auto mt-auto'>HP: ${x.hp}</p>
+      .innerHTML = `<h5 class = 'text-center mx-auto font-weight-bold'>${x.name}</h5>
+  <p class = 'text-center mx-auto'>${x.description}</p>
+  <p class = 'text-center mx-auto'>Attack: ${x.attack}</p>
+  <p class = 'text-center mx-auto'>HP: ${x.hp}</p>
   <a class='btn btn-dark mx-auto text-center text-white mt-auto' id=battle${x.id}>BATTLE</a>`
   });
 }

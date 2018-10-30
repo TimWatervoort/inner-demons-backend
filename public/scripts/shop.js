@@ -58,11 +58,11 @@ function makeWeaponsCard(data) {
     let item = col.appendChild(makeDiv(['card']));
     item.appendChild(makeImg(x.image));
     item.appendChild(makeDiv(['card-body', 'text-center', 'd-flex', 'flex-column']))
-      .innerHTML = `<h5 class = 'text-center mx-auto'>${x.name}</h5>
-  <p class = 'text-center mx-auto mt-auto'>${x.description}</p>
-  <p class = 'text-center mx-auto mt-auto'>Attack: ${x.attack}</p>
-  <p class = 'text-center mx-auto mt-auto'>Chaos: ${x.chaos}</p>
-  <p class = 'text-center mx-auto mt-auto'>Cost: ${x.cost} Gold</p>
+      .innerHTML = `<h5 class = 'text-center mx-auto font-weight-bold'>${x.name}</h5>
+  <p class = 'text-center mx-auto'>${x.description}</p>
+  <p class = 'text-center mx-auto'>Attack: ${x.attack}</p>
+  <p class = 'text-center mx-auto'>Chaos: ${x.chaos}</p>
+  <p class = 'text-center mx-auto'>Cost: ${x.cost} Gold</p>
   <a class='btn btn-dark mx-auto text-center text-white mt-auto' id=buy${x.id}cost${x.cost}>BUY</a>`
   });
 }
