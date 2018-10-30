@@ -35,6 +35,12 @@ body {
   margin: 10px;
 }
 
+.card-img-top {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
 .weaponImg {
   width: 150px;
   height: auto;
