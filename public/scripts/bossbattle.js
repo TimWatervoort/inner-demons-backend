@@ -16,7 +16,7 @@ function userAttack(ally, weapon, user, enemy) {
   damage += calcDamage(attackValue)
   damage += criticalWeapon(damage, weapon)
   damage += criticalAlly(damage, ally.attack, user.level, ally.name)
-  let x = Math.floor(Math.random()*attacks.length);
+  let x = Math.floor(Math.random() * attacks.length);
 
   setHere.innerHTML += `<hr>You ${attacks[x]} ${enemy.name} for ${damage} damage!`
   console.log("You hit for: ", damage)
@@ -29,7 +29,7 @@ function monsterAttack(monster) {
 
   damage += calcDamage(monster.attack)
   damage += criticalWeapon(damage, monster.attack)
-  let x = Math.floor(Math.random()*attacks.length);
+  let x = Math.floor(Math.random() * attacks.length);
 
   setHere.innerHTML += `<br>${monster.name} ${attacks[x]} you for ${damage} damage!`
 
@@ -83,28 +83,31 @@ function dukeItOut(ally, weapon, monster, user) {
 
   // while (userHP > 0 && monsterHP > 0) {
 
-      monsterHP -= userAttack(ally, weapon, user, monster)
-      console.log("Monster Health: ", monsterHP)
-      if (monsterHP <= 0) {
-        setHere.innerHTML += `<br>You slayed ${monster.name} with a ${weapon.name}!`
-        console.log(`You slayed the monster with a ${weapon.name}!`)
-        axios.post(`/monsters_users`, {user_id: user.id, monster_id: monster.id})
-        .then(result => {
-          setTimeout(() => victoryScreen(monster), 3000)
-          console.log(result);
-        })
-        return `You slayed the monster with a ${weapon.name}!`
-      }
+  monsterHP -= userAttack(ally, weapon, user, monster)
+  console.log("Monster Health: ", monsterHP)
+  if (monsterHP <= 0) {
+    setHere.innerHTML += `<br>You slayed ${monster.name} with a ${weapon.name}!`
+    console.log(`You slayed the monster with a ${weapon.name}!`)
+    axios.post(`/monsters_users`, {
+        user_id: user.id,
+        monster_id: monster.id
+      })
+      .then(result => {
+        setTimeout(() => victoryScreen(monster), 3000)
+        console.log(result);
+      })
+    return `You slayed the monster with a ${weapon.name}!`
+  }
 
-      userHP -= monsterAttack(monster)
-      console.log("User Health: ", userHP)
-      if (userHP <= 0) {
-        setHere.innerHTML += `<br>You were killed by ${monster.name}!`
-        console.log("You were killed.")
-        return "You were killed."
-      }
-    monster.hp = monsterHP;
-    user.hp = userHP;
+  userHP -= monsterAttack(monster)
+  console.log("User Health: ", userHP)
+  if (userHP <= 0) {
+    setHere.innerHTML += `<br>You were killed by ${monster.name}!`
+    console.log("You were killed.")
+    return "You were killed."
+  }
+  monster.hp = monsterHP;
+  user.hp = userHP;
 
   // }
   if (userHP > 0 && monsterHP > 0) {
@@ -116,7 +119,5 @@ function dukeItOut(ally, weapon, monster, user) {
 
 function victoryScreen(monster) {
   setHere.innerHTML = '';
-  setHere.innerHTML = `<h3 class='text-center text-white'>Congratulations!</h3>
-  <img class = 'weaponImg' src=${monster.image} style='margin:auto;'><br>
-  <h5 class = 'text-center text-white'>${monster.name} is now available as an ally.</h5>`
+  setHere.innerHTML = `<h3 class='text-center text-white'>Congratulations!</h3><hr><img class = 'weaponImg' src=${monster.image} style='margin:auto;'><br><h5 class = 'text-center text-white'>${monster.name} is now available as an ally.</h5>`
 }
