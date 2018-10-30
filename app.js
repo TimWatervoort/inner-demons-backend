@@ -10,7 +10,6 @@ require('dotenv').config()
 const app = express()
 
 /***** ERROR HANDLERS *****/
-
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 const monstersRouter = require('./routes/monsters')
@@ -30,8 +29,11 @@ const authUtil = require('./util/auth')
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-/***** EXPRESS Utilities *****/
+/***** PUBLIC *****/
+const images = require('path').join(__dirname, '/public/images')
+app.use(express.static(images))
 
+/***** EXPRESS Utilities *****/
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -98,7 +100,6 @@ passport.deserializeUser((object, done) => {
 })
 
 /***** ROUTES *****/
-
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/monsters', monstersRouter)
@@ -112,7 +113,6 @@ app.use('/goals_tasks', goals_tasksRouter)
 app.use('/auth', authRouter)
 
 /***** ERROR HANDLERS *****/
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404))

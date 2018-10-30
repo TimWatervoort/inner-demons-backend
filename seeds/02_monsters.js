@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
           description: 'He who brings suffering to the world',
           attack: 5,
           hp: 45,
-          image: ''
+          image: 'angel.png'
         },
         {
           id: 2,
@@ -17,7 +17,7 @@ exports.seed = function(knex, Promise) {
           description: 'Spooky horn-playing skeletal monster',
           attack: 2,
           hp: 10,
-          image: ''
+          image: 'big_kobold_new.png'
         },
         {
           id: 3,
@@ -25,7 +25,7 @@ exports.seed = function(knex, Promise) {
           description: 'The small creature lumbers across the room, pinching at your toes.',
           attack: 1,
           hp: 5,
-          image: ''
+          image: 'anubis_guard.png'
         }
       ]);
     })
