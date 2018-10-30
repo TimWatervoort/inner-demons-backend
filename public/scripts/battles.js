@@ -131,6 +131,9 @@ function battlePhaseThree() {
   axios.get(`/users/${theUser}`)
     .then(result => {
       let monsToUse = result.data.monsters;
+      if (monsToUse.length === 0) {
+        monsToUse = [10]
+      }
       Promise.all(monsToUse.map(x => {
           return axios.get(`/monsters/${x}`)
         }))
