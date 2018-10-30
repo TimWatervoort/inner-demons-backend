@@ -22,7 +22,7 @@ const validatePostBody = (req, res, next) => {
     chaos: Joi.number().integer(),
     attack: Joi.number().integer().required(),
     cost: Joi.number().integer().required(),
-    image: Joi.string().uri()
+    image: Joi.string().regex(/\/.*\.png/).required()
   })
 
   const { error } = Joi.validate(req.body, postSchema)
@@ -39,8 +39,8 @@ const buildPatchReq = (req, res, next) => {
     description: Joi.string(),
     attack: Joi.number().integer(),
     chaos: Joi.number().integer(),
-    attack: Joi.number().integer().required(),
-    image: Joi.string().uri()
+    attack: Joi.number().integer(),
+    image: Joi.string().regex(/\/.*\.png/)
   })
 
   const { error } = Joi.validate(req.body, patchSchema)
