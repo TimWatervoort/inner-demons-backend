@@ -26,8 +26,12 @@ body {
 
 .card {
   width: 250px;
-  height: 500px;
+  height: 350px;
   margin-top: 10px;
+}
+
+.p {
+  font-size: 14px;
 }
 
 .goalBut{
@@ -36,6 +40,24 @@ body {
 }
 
 .weaponImg {
-  width: 150px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.card-img-top {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.small-img {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  width: 100px;
   height: auto;
 }

@@ -60,7 +60,7 @@ function makeMonsterCard(data) {
     item.appendChild(makeDiv(['card-body', 'text-center']))
       .innerHTML = `<h5 class = 'text-center mx-auto'>${x.name}</h5>
   <p class = 'text-center mx-auto'>${x.description}</p>
-  <p class = 'text-center mx-auto'>Difficulty: ${x.attack}</p>
+  <p class = 'text-center mx-auto'>Attack: ${x.attack}</p>
   <a class='btn btn-dark mx-auto text-center text-white' id=battle${x.id}>BATTLE</a>`
   });
 }
@@ -140,7 +140,18 @@ function battlePhaseFour() {
   axios.get(`/users/${theUser}`)
     .then(result => {
       let thisUser = result.data;
-      setHere.innerHTML = `<h3 class='mx-auto text-center'>${thisUser.name} versus ${currentEnemy.name}</h3>`;
+      setHere.innerHTML = `
+      <div class = 'row'>
+      <div class = 'col'>
+      <img class = 'small-img' src=${currentAlly.image}>
+      </div>
+      <div class = 'col'>
+      <h3 class='mx-auto text-center'>${thisUser.name} versus ${currentEnemy.name}</h3>
+      </div>
+      <div class = 'col'>
+      <img class = 'small-img' src=${currentEnemy.image}>
+      </div>
+      </div>`;
       dukeItOut(currentAlly, currentWeapon, currentEnemy, thisUser);
     });
 }

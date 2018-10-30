@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "knex": "knex",
-    "heroku-postbuild": "knex migrate:rollback; knex migrate:latest; knex seed:run;",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www"
     },
