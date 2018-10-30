@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }))
             .then(result => {
               let monstersData = result.map(i => i.data)
+              monstersData.sort((a,b) => {
+                return a.attack - b.attack
+              });
               makeMonsterCard(monstersData);
             });
           }
