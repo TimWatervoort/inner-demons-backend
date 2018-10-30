@@ -39,6 +39,9 @@ document.addEventListener(`DOMContentLoaded`, () => {
           return user.monsters.includes(y.id);
         });
         makeMonstersCard(mons);
+        if (user.goals.length === 0) {
+          makeBlankGoalCard();
+        } else {
         Promise.all(user.goals.map(a => axios.get(`/goals/${a}`)))
           .then(result => {
             let theGoals = result.map(b => b.data)
@@ -51,6 +54,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
                 })
             })
           })
+        }
       });
     });
   });
@@ -72,6 +76,11 @@ function setUser(userData) { // set the data in the user bio card
   userImg.setAttribute('src', userData.image)
 }
 
+
+function makeBlankGoalCard() {
+  goalsDropdown.appendChild(makeDiv(['card', 'card-body'])).innerText = 'No goals yet! Head over to the ADD GOALS page to add some.'
+}
+
 function makeGoalCard(data) { //make the cards in the dropdown for goals
     data.forEach(x => {
       let ids = x.tasks.map(y => y.id);
@@ -89,6 +98,9 @@ function makeGoalCard(data) { //make the cards in the dropdown for goals
       let row3 = item.appendChild(makeDiv(['row']));
       row3.innerHTML += '<strong>Click tasks to complete them.</strong>'
       addTasks(x.tasks, row3);
+      if (localStorage.getItem(`complete${x.xp}tasks${ids.join('')}`)) {
+        item.classList.add('bg-dark');
+      }
     });
 }
 
