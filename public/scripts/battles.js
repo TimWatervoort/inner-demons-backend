@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
               monstersData.sort((a,b) => {
                 return a.attack - b.attack
               });
+              console.log(monstersData);
               makeMonsterCard(monstersData);
             });
           }
