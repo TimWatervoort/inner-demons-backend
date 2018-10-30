@@ -41,7 +41,10 @@ function setUp() {
                 return axios.get(`/weapons/${z}`)
               }))
               .then(result => {
-                let weaponsData = result.map(i => i.data)
+                let weaponsData = result.map(i => i.data);
+                weaponsData.sort((a,b) => {
+                  return a.attack - b.attack
+                });
                 makeWeaponsCard(weaponsData);
               });
           }

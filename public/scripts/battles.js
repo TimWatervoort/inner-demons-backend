@@ -29,6 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }))
             .then(result => {
               let monstersData = result.map(i => i.data)
+              monstersData.sort((a,b) => {
+                return a.attack - b.attack
+              });
+              console.log(monstersData);
               makeMonsterCard(monstersData);
             });
           }
@@ -61,6 +65,7 @@ function makeMonsterCard(data) {
       .innerHTML = `<h5 class = 'text-center mx-auto'>${x.name}</h5>
   <p class = 'text-center mx-auto'>${x.description}</p>
   <p class = 'text-center mx-auto'>Attack: ${x.attack}</p>
+  <p class = 'text-center mx-auto'>HP: ${x.hp}</p>
   <a class='btn btn-dark mx-auto text-center text-white' id=battle${x.id}>BATTLE</a>`
   });
 }

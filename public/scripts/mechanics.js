@@ -25,6 +25,8 @@ function checkDate() { // make sure the date is today. if it's not, clear storag
   }
 }
 
+const goldImage = document.querySelector('#goldImage');
+
 function completeTask(item) {
   let arr = item.id.split('and'); // remove the word and from the id
   let gold = parseInt(arr[1]); // get the gold from the id
@@ -35,6 +37,9 @@ function completeTask(item) {
   localStorage.setItem(id, true);
   axios.get(`/users/${theUser}`)
   .then(result => {
+    fadeMeIn(goldImage);
+    setTimeout(() => fadeMeOut(goldImage), 2000);
+    userGold.innerHTML = parseInt(userGold.innerHTML) + 10;
     console.log(result.data);
     let passes = parseInt(result.data.passes);
     let preGold = parseInt(result.data.gold);
@@ -83,12 +88,16 @@ function completeGoal(item) {
     let hp = parseInt(result.data.hp);
     let preXp = parseInt(result.data.xp);
     let newXp = result.data.xp+xp;
+    userXP.innerHTML = newXp;
     axios.patch(`/users/${theUser}`, {xp: newXp})
     .then(result => {
       if (result.data.xp >= 1000){ //  if the user has over 1000 experience, level up
         newXp -= 1000;
         level++;
         hp += 5;
+        userLevel.innerHTML = level;
+        userXP.innerHTML = newXp;
+        userHP.innerHTML = hp;
         axios.patch(`/users/${theUser}`, {xp: 0, level: level, hp: hp})
       }
     });
@@ -107,4 +116,31 @@ function checkTasks(item) {
     completeGoal(item);
   }
 
+}
+
+//Fade-in function
+function fadeMeIn(item) {
+  let op = 0.01;
+  let fadeIn = setInterval(function() {
+    item.style.opacity = op;
+    op += 0.02;
+  }, 25);
+  setTimeout(() => {
+    item.style.opacity = 1;
+    clearInterval(fadeIn);
+  }, 1000);
+}
+
+//Fade-out function
+function fadeMeOut(item) {
+  let op = 1;
+  item.style.opacity = 1;
+  let fadeOut = setInterval(function() {
+    item.style.opacity = op;
+    op -= 0.02;
+  }, 25);
+  setTimeout(() => {
+    item.style.opacity = 0;
+    clearInterval(fadeOut)
+  }, 2000);
 }

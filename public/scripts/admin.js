@@ -8,7 +8,6 @@ addMonster()
 addWeapon()
 })
 
-
 function addWeapon() {
 
   let submitWeapon = document.getElementById('create-weapon')
@@ -260,7 +259,7 @@ function getMonsters() {
               description: description.value,
               attack: attack.value,
               hp: hp.value,
-              image: image.valuue
+              image: image.value
             }
 
             axios.patch(`/monsters/${monsterEditId}`, data)

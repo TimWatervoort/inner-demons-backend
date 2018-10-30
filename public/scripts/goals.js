@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     item.id = 'x';
     item.innerText = 'ADDED!';
     console.log('Added goal number', id);
-    axios.post(`/goals_users`, {user_id: 1, goal_id: id});
+    axios.post(`/goals_users`, {user_id: theUser, goal_id: id});
   }
 
 
