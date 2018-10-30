@@ -90,6 +90,7 @@ function dukeItOut(ally, weapon, monster, user) {
         console.log(`You slayed the monster with a ${weapon.name}!`)
         axios.post(`/monsters_users`, {user_id: user.id, monster_id: monster.id})
         .then(result => {
+          setTimeout(() => victoryScreen(monster), 3000)
           console.log(result);
         })
         return `You slayed the monster with a ${weapon.name}!`
@@ -111,4 +112,11 @@ function dukeItOut(ally, weapon, monster, user) {
       dukeItOut(ally, weapon, monster, user);
     }, 2000)
   }
+}
+
+function victoryScreen(monster) {
+  setHere.innerHTML = '';
+  setHere.innerHTML = `<h3 class='text-center text-white'>Congratulations!</h3>
+  <img class = 'weaponImg' src=${monster.image} style='margin:auto;'`><br>
+  <h5 class = 'text-center text-white'>${monster.name} is now available as an ally.</h5>`
 }
