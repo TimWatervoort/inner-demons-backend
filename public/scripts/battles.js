@@ -147,13 +147,16 @@ function battlePhaseFour() {
       let thisUser = result.data;
       setHere.innerHTML = `
       <div class = 'row'>
-      <div class = 'col'>
+      <div class = 'col-2'>
       <img class = 'small-img' src=${currentAlly.image}>
       </div>
-      <div class = 'col'>
+      <div class = 'col-2'>
+      <img class = 'small-img' src=${currentWeapon.image}>
+      </div>
+      <div class = 'col-4'>
       <h3 class='mx-auto text-center'>${thisUser.name} versus ${currentEnemy.name}</h3>
       </div>
-      <div class = 'col'>
+      <div class = 'col-4'>
       <img class = 'small-img' src=${currentEnemy.image}>
       </div>
       </div>`;
