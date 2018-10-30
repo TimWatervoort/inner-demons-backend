@@ -45,6 +45,9 @@ body {
 }
 
 .weaponImg {
+  width: 150px;
+  height: 150px;
+  margin: auto;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;

@@ -108,6 +108,7 @@ function dukeItOut(ally, weapon, monster, user) {
   }
   monster.hp = monsterHP;
   user.hp = userHP;
+  setHere.innerHTML += `<br>Their health: ${monsterHP} | Your health: ${userHP}`
 
   // }
   if (userHP > 0 && monsterHP > 0) {
