@@ -117,6 +117,6 @@ function dukeItOut(ally, weapon, monster, user) {
 function victoryScreen(monster) {
   setHere.innerHTML = '';
   setHere.innerHTML = `<h3 class='text-center text-white'>Congratulations!</h3>
-  <img class = 'weaponImg' src=${monster.image} style='margin:auto;'`><br>
+  <img class = 'weaponImg' src=${monster.image} style='margin:auto;'><br>
   <h5 class = 'text-center text-white'>${monster.name} is now available as an ally.</h5>`
 }
