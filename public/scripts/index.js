@@ -84,7 +84,7 @@ function setUser(userData) { // set the data in the user bio card
   if (userData.image) {
     userImg.setAttribute('src', userData.image)
   } else {
-    userImg.setAttribute('src', '../images/monster/human_new.png');
+    userImg.setAttribute('src', '/monster/human_new.png');
     axios.patch(`users/${thisUser}`, {image: '../images/monster/human_new.png'})
   }
 }
