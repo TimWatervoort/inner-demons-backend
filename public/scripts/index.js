@@ -178,6 +178,7 @@ function makeButton(type, id, tasks) { // make a button with given type and id
 }
 
 function changePicture(item) {
+  console.log(event.target);
   let source = item.getAttribute('src');
   userImg.setAttribute('src', source);
 }
