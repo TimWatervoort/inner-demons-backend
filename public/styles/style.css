@@ -11,6 +11,10 @@ body {
 
 }
 
+#imgChanger {
+  width: 200px;
+}
+
 #userImg {
   border-radius: 10px;
   border: 3px solid black;

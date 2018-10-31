@@ -168,9 +168,12 @@ function battlePhaseFour() {
       setHere.innerHTML = `
       <div class = 'row'>
       <div class = 'col-2'>
+      <img class = 'small-img' src=${thisUser.image}>
+      </div>
+      <div class = 'col-1'>
       <img class = 'small-img' src=${currentAlly.image}>
       </div>
-      <div class = 'col-2'>
+      <div class = 'col-1'>
       <img class = 'small-img' src=${currentWeapon.image}>
       </div>
       <div class = 'col-4'>
