@@ -102,7 +102,7 @@ function makeGoalCard(data) { //make the cards in the dropdown for goals
     let col1 = row1.appendChild(makeDiv(['col']));
     let col2 = row1.appendChild(makeDiv(['col']));
     col1.innerHTML += `Goal: ${x.name}`;
-    col2.appendChild(makeButton('complete', x.xp, ids.join(''))) //set the button's id as the word complete, the experience from the goal, and the tasks associated with the goal.
+    col2.appendChild(makeButton('complete', x.xp, ids.join('_'))) //set the button's id as the word complete, the experience from the goal, and the tasks associated with the goal.
     let row2 = item.appendChild(makeDiv(['row']));
     let col3 = row2.appendChild(makeDiv(['col']));
     let col4 = row2.appendChild(makeDiv(['col']));
@@ -111,7 +111,7 @@ function makeGoalCard(data) { //make the cards in the dropdown for goals
     let row3 = item.appendChild(makeDiv(['row']));
     row3.innerHTML += '<strong>Click tasks to complete them.</strong>'
     addTasks(x.tasks, row3);
-    if (localStorage.getItem(`complete${x.xp}tasks${ids.join('')}`)) {
+    if (localStorage.getItem(`complete${x.xp}tasks${ids.join('_')}`)) {
       item.classList.add('bg-dark');
     }
   });
