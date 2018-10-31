@@ -75,15 +75,6 @@ router.get('/', (req, res, next) => {
   .catch(err => next(err))
 })
 
-// router.get('/verify/:jwt', (req, res) => {
-//   const { jwt } = req.params
-//   // jwt.verify(token, secretOrPublicKey, [options, callback])
-//   jwt.verify(jwt, process.env.TOKEN_SECRET, (err, decoded) => {
-//     console.log('hmm', decoded)
-//     res.json({ decoded })
-//   })
-// })
-
 /* GET single user record */
 router.get('/verify', validateUserID, (req, res, next) => {
   let jwtToken = req.cookies.jwt
