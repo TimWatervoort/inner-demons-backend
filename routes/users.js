@@ -39,7 +39,7 @@ const buildPatchReq = (req, res, next) => {
     xp: Joi.number().integer(),
     points_toward_pass: Joi.number().integer(),
     passes: Joi.number().integer(),
-    image: Joi.string().uri()
+    image: Joi.string()
   })
 
   const { error } = Joi.validate(req.body, patchSchema)

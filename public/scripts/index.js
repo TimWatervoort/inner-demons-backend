@@ -83,6 +83,9 @@ function setUser(userData) { // set the data in the user bio card
   userWeapons.innerHTML += userData.weapons.length;
   if (userData.image) {
     userImg.setAttribute('src', userData.image)
+  } else {
+    userImg.setAttribute('src', '/monster/human_new.png');
+    axios.patch(`users/${thisUser}`, {image: '../images/monster/human_new.png'})
   }
 }
 
@@ -179,7 +182,7 @@ function makeButton(type, id, tasks) { // make a button with given type and id
 }
 
 function changePicture(item) {
-  let source = item.getAttribute('src');
+  let source = item.getAttribute('src').replace('../images', '');
   userImg.setAttribute('src', source);
-  axios.patch(`user/${thisUser}`, {image: source});
+  axios.patch(`/users/${thisUser}`, {image: source});
 }
