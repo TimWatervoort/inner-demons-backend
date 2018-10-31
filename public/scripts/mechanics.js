@@ -94,7 +94,7 @@ function completeGoal(item) {
       if (result.data.xp >= 1000){ //  if the user has over 1000 experience, level up
         newXp -= 1000;
         level++;
-        hp += 5;
+        hp += 10;
         userLevel.innerHTML = level;
         userXP.innerHTML = newXp;
         userHP.innerHTML = hp;

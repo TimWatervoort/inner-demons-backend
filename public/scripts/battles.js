@@ -1,22 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  if(!localStorage.getItem('user')) {
+  if (!localStorage.getItem('user')) {
     location.replace('intro.html')
   }
 
   const setHere = document.querySelector('#setHere');
   // const url = 'https://fathomless-chamber-53771.herokuapp.com';
   const theUser = localStorage.getItem('user');
+  const attackSorter = document.querySelector('#attackSorter');
+  const hpSorter = document.querySelector('#hpSorter');
+  const sortButtons = document.querySelector('#sortButtons');
 
   let currentWeapon;
   let currentEnemy;
   let currentAlly;
+  let monstersData;
 
   axios.get(`/users/${theUser}`)
     .then(result => {
       let userMonsters = result.data.monsters;
       axios.get(`/monsters`)
         .then(result => {
+          let theMonsters = result.data;
           let allMons = result.data.map(x => x.id);
           let monsToGen = allMons.filter(y => {
             return !userMonsters.includes(y)
@@ -24,20 +29,30 @@ document.addEventListener('DOMContentLoaded', () => {
           if (monsToGen.length === 0) {
             setHere.innerHTML = `<h3 class = 'text-center text-white'>No available raid bosses!</h3>`
           } else {
-          Promise.all(monsToGen.map(z => {
-              return axios.get(`/monsters/${z}`)
-            }))
-            .then(result => {
-              let monstersData = result.map(i => i.data)
-              monstersData.sort((a,b) => {
-                return a.attack - b.attack
-              });
-              console.log(monstersData);
-              makeMonsterCard(monstersData);
+            monstersData = theMonsters.filter(element => {
+              return monsToGen.includes(element.id);
             });
+            sortByAttack();
           }
         });
     });
+
+  hpSorter.addEventListener('click', sortByHP);
+  attackSorter.addEventListener('click', sortByAttack);
+
+  function sortByAttack () {
+    monstersData.sort((a, b) => {
+      return a.attack - b.attack
+    });
+    makeMonsterCard(monstersData);
+  }
+
+  function sortByHP () {
+    monstersData.sort((a, b) => {
+      return a.hp - b.hp
+    });
+    makeMonsterCard(monstersData);
+  }
 
   document.addEventListener('click', event => {
     if (/battle/.test(event.target.id)) {
@@ -57,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const theUser = localStorage.getItem('user');
 
 function makeMonsterCard(data) {
+  setHere.innerHTML = '';
   data.forEach(x => {
     let col = setHere.appendChild(makeDiv(['col']));
     let item = col.appendChild(makeDiv(['card']));
@@ -92,6 +108,7 @@ function addClasses(item, arr) {
 }
 
 function startBattle(item) {
+  sortButtons.setAttribute('hidden', true);
   let id = parseInt(item.id.replace(/battle/, ''));
   setHere.style.opacity = 0;
   setHere.innerHTML = '';

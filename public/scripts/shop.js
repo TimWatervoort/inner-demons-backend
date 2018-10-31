@@ -20,8 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // const url = 'https://fathomless-chamber-53771.herokuapp.com';
 const theUser = localStorage.getItem('user');
+const costSorter = document.querySelector('#costSorter');
+const chaosSorter = document.querySelector('#chaosSorter');
+const attackSorter = document.querySelector('#attackSorter');
+
 
 setTimeout(setUp, 500);
+
+let theWeapons;
 
 function setUp() {
   axios.get(`/users/${theUser}`)
@@ -30,6 +36,7 @@ function setUp() {
       goldCounter.innerText = `Your Gold: ${result.data.gold}`
       axios.get(`/weapons`)
         .then(result => {
+          let weaponsToMake = result.data;
           let allWeaps = result.data.map(x => x.id);
           let weapsToGen = allWeaps.filter(y => {
             return !userWeapons.includes(y)
@@ -37,22 +44,43 @@ function setUp() {
           if (weapsToGen.length === 0) {
             setHere.innerHTML = `<h3 class = 'text-center text-white'>No available weapons to buy!</h3>`
           } else {
-            Promise.all(weapsToGen.map(z => {
-                return axios.get(`/weapons/${z}`)
-              }))
-              .then(result => {
-                let weaponsData = result.map(i => i.data);
-                weaponsData.sort((a,b) => {
-                  return a.attack - b.attack
-                });
-                makeWeaponsCard(weaponsData);
-              });
+            theWeapons = weaponsToMake.filter(wep => {
+              return weapsToGen.includes(wep.id);
+            });
+            sortByCost();
           }
         });
     });
 }
 
+attackSorter.addEventListener('click', sortByAttack);
+chaosSorter.addEventListener('click', sortByChaos);
+costSorter.addEventListener('click', sortByCost);
+
+
+function sortByAttack() {
+  theWeapons.sort((a, b) => {
+    return a.attack - b.attack
+  });
+  makeWeaponsCard(theWeapons);
+}
+
+function sortByChaos() {
+  theWeapons.sort((a, b) => {
+    return a.chaos - b.chaos
+  });
+  makeWeaponsCard(theWeapons);
+}
+
+function sortByCost() {
+  theWeapons.sort((a, b) => {
+    return a.cost - b.cost
+  });
+  makeWeaponsCard(theWeapons);
+}
+
 function makeWeaponsCard(data) {
+  setHere.innerHTML = '';
   data.forEach(x => {
     let col = setHere.appendChild(makeDiv(['col']));
     let item = col.appendChild(makeDiv(['card']));

@@ -11,6 +11,10 @@ body {
 
 }
 
+#attackSorter, #hpSorter {
+  width: 150px;
+}
+
 #userImg {
   border-radius: 10px;
   border: 3px solid black;
@@ -26,7 +30,7 @@ body {
 
 .card {
   width: 250px;
-  height: 400px;
+  height: 450px;
   margin-top: 10px;
 }
 
