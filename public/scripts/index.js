@@ -182,7 +182,7 @@ function makeButton(type, id, tasks) { // make a button with given type and id
 }
 
 function changePicture(item) {
-  let source = item.getAttribute('src');
+  let source = item.getAttribute('src').replace('../images', '');
   userImg.setAttribute('src', source);
   axios.patch(`/users/${thisUser}`, {image: source});
 }
