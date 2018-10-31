@@ -26,9 +26,10 @@ function userAttack(ally, weapon, user, enemy) {
 // Gives the amount of damage the monster deals
 function monsterAttack(monster) {
   let damage = 0
+  let crit = randomNum(100)
 
   damage += calcDamage(monster.attack)
-  damage += criticalWeapon(damage, monster.attack)
+  if (crit <= 5) { damage += damage }
   let x = Math.floor(Math.random() * attacks.length);
 
   setHere.innerHTML += `<br>${monster.name} ${attacks[x]} you for ${damage} damage!`
