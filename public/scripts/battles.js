@@ -7,10 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const setHere = document.querySelector('#setHere');
   // const url = 'https://fathomless-chamber-53771.herokuapp.com';
   const theUser = localStorage.getItem('user');
+  const attackSorter = document.querySelector('#attackSorter');
+  const hpSorter = document.querySelector('#hpSorter');
 
   let currentWeapon;
   let currentEnemy;
   let currentAlly;
+  let monstersData;
 
   axios.get(`/users/${theUser}`)
     .then(result => {
@@ -25,16 +28,30 @@ document.addEventListener('DOMContentLoaded', () => {
           if (monsToGen.length === 0) {
             setHere.innerHTML = `<h3 class = 'text-center text-white'>No available raid bosses!</h3>`
           } else {
-            let monstersData = theMonsters.filter(element => {
+            monstersData = theMonsters.filter(element => {
               return monsToGen.includes(element.id);
             });
-            monstersData.sort((a, b) => {
-              return a.attack - b.attack
-            });
-            makeMonsterCard(monstersData);
+            sortByAttack();
           }
         });
     });
+
+  hpSorter.addEventListener('click', sortByHP);
+  attackSorter.addEventListener('click', sortByAttack);
+
+  function sortByAttack () {
+    monstersData.sort((a, b) => {
+      return a.attack - b.attack
+    });
+    makeMonsterCard(monstersData);
+  }
+
+  function sortByHP () {
+    monstersData.sort((a, b) => {
+      return a.hp - b.hp
+    });
+    makeMonsterCard(monstersData);
+  }
 
   document.addEventListener('click', event => {
     if (/battle/.test(event.target.id)) {
@@ -54,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const theUser = localStorage.getItem('user');
 
 function makeMonsterCard(data) {
+  setHere.innerHTML = '';
   data.forEach(x => {
     let col = setHere.appendChild(makeDiv(['col']));
     let item = col.appendChild(makeDiv(['card']));

@@ -20,8 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // const url = 'https://fathomless-chamber-53771.herokuapp.com';
 const theUser = localStorage.getItem('user');
+const costSorter = document.querySelector('#costSorter');
+const chaosSorter = document.querySelector('#chaosSorter');
+const attackSorter = document.querySelector('#attackSorter');
+
 
 setTimeout(setUp, 500);
+
+let theWeapons;
 
 function setUp() {
   axios.get(`/users/${theUser}`)
@@ -38,19 +44,43 @@ function setUp() {
           if (weapsToGen.length === 0) {
             setHere.innerHTML = `<h3 class = 'text-center text-white'>No available weapons to buy!</h3>`
           } else {
-            let theWeapons = weaponsToMake.filter(wep => {
+            theWeapons = weaponsToMake.filter(wep => {
               return weapsToGen.includes(wep.id);
             });
-            theWeapons.sort((a, b) => {
-              return a.attack - b.attack
-            });
-            makeWeaponsCard(theWeapons);
+            sortByCost();
           }
         });
     });
 }
 
+attackSorter.addEventListener('click', sortByAttack);
+chaosSorter.addEventListener('click', sortByChaos);
+costSorter.addEventListener('click', sortByCost);
+
+
+function sortByAttack() {
+  theWeapons.sort((a, b) => {
+    return a.attack - b.attack
+  });
+  makeWeaponsCard(theWeapons);
+}
+
+function sortByChaos() {
+  theWeapons.sort((a, b) => {
+    return a.chaos - b.chaos
+  });
+  makeWeaponsCard(theWeapons);
+}
+
+function sortByCost() {
+  theWeapons.sort((a, b) => {
+    return a.cost - b.cost
+  });
+  makeWeaponsCard(theWeapons);
+}
+
 function makeWeaponsCard(data) {
+  setHere.innerHTML = '';
   data.forEach(x => {
     let col = setHere.appendChild(makeDiv(['col']));
     let item = col.appendChild(makeDiv(['card']));
