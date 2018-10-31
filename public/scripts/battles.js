@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const theUser = localStorage.getItem('user');
   const attackSorter = document.querySelector('#attackSorter');
   const hpSorter = document.querySelector('#hpSorter');
+  const sortButtons = document.querySelector('#sortButtons');
 
   let currentWeapon;
   let currentEnemy;
@@ -107,6 +108,7 @@ function addClasses(item, arr) {
 }
 
 function startBattle(item) {
+  sortButtons.setAttribute('hidden', true);
   let id = parseInt(item.id.replace(/battle/, ''));
   setHere.style.opacity = 0;
   setHere.innerHTML = '';
