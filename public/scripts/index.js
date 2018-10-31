@@ -18,6 +18,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
   const userImg = document.querySelector('#userImg');
 
   const logInButton = document.querySelector('#logInButton');
+  const imgModal = document.querySelector('#imgModal');
 
   axios.get(`/users/verify`).then(result => {
     localStorage.setItem('user', result.data.id)
@@ -54,6 +55,12 @@ document.addEventListener(`DOMContentLoaded`, () => {
   });
 
   logInButton.addEventListener('click', logIn);
+
+  imgModal.addEventListener('click', event => {
+    if (event.target.classList.includes('selectImg')){
+      changePicture(event.target);
+    }
+  })
 
 });
 
@@ -168,4 +175,9 @@ function makeButton(type, id, tasks) { // make a button with given type and id
   button.classList.add('goalBut');
   button.innerText = type.toUpperCase();
   return button;
+}
+
+function changePicture(item) {
+  let source = item.getAttribute('src');
+  userImg.setAttribute('src', source);
 }
