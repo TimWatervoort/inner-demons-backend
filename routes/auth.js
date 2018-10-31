@@ -24,10 +24,11 @@ router.get('/github', passport.authenticate('github', { scope: ['profile'] }))
 // hand control to passport to use code to grab profile info
 router.get('/github/redirect', passport.authenticate('github'), (req, res) => {
   console.log('inside redirect')
+  console.log('req.user', req.user)
   let payLoad = {
     id: req.user.id,
-    github_id: req.user.github_id,
-    loggedIn: true,
+    name: req.user.name,
+    github_id: req.user.github_id
   }
   console.log('payload', payLoad)
   let token = jwt.sign(payLoad, process.env.TOKEN_SECRET, {
@@ -36,7 +37,7 @@ router.get('/github/redirect', passport.authenticate('github'), (req, res) => {
 
   console.log('token', token)
   res.cookie("jwt", token, {
-    maxAge: 900000 // 15 minutes
+    maxAge: 8 * 60 * 60 * 1000 // 15 minutes
   })
 
   console.log('created cookie')
