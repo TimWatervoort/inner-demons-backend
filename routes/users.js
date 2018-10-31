@@ -1,7 +1,8 @@
+require('dotenv').config()
 const express = require('express')
 const router = express.Router()
 const knex = require('../knex')
-
+const jwt = require('jsonwebtoken')
 const Joi = require('joi')
 
 const validateUserID = (req, res, next) => {
@@ -74,9 +75,20 @@ router.get('/', (req, res, next) => {
   .catch(err => next(err))
 })
 
+// router.get('/verify/:jwt', (req, res) => {
+//   const { jwt } = req.params
+//   // jwt.verify(token, secretOrPublicKey, [options, callback])
+//   jwt.verify(jwt, process.env.TOKEN_SECRET, (err, decoded) => {
+//     console.log('hmm', decoded)
+//     res.json({ decoded })
+//   })
+// })
+
 /* GET single user record */
-router.get('/:id', validateUserID, (req, res, next) => {
-  let { id } = req.params
+router.get('/verify', validateUserID, (req, res, next) => {
+  let jwtToken = req.cookies.jwt
+  let id = jwt.verify(jwt, process.env.TOKEN_SECRET).id
+  // let { id } = req.params
   knex('users')
   .where('id', id)
   .then(([user]) => {
