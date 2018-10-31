@@ -58,7 +58,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
 
   imgModal.addEventListener('click', event => {
     console.log(event.target);
-    if (event.target.classList.includes('selectImg')){
+    if (event.target.hasAttribute('src')){
       changePicture(event.target);
     }
   })
