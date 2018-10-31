@@ -28,12 +28,20 @@ document.addEventListener(`DOMContentLoaded`, () => {
       let weps = result.data.filter(x => {
         return user.weapons.includes(x.id);
       });
-      makeWeaponsCard(weps)
+      if (weps.length === 0) {
+        makeBlankWeaponCard();
+      } else {
+        makeWeaponsCard(weps)
+      }
       axios.get(`/monsters`).then(result => {
         let mons = result.data.filter(y => {
           return user.monsters.includes(y.id);
         });
-        makeMonstersCard(mons);
+        if (mons.length === 0) {
+          makeBlankMonsterCard();
+        } else {
+          makeMonstersCard(mons);
+        }
         if (user.goals.length === 0) {
           makeBlankGoalCard();
         } else {
@@ -58,7 +66,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
 
   imgModal.addEventListener('click', event => {
     console.log(event.target);
-    if (event.target.hasAttribute('src')){
+    if (event.target.hasAttribute('src')) {
       changePicture(event.target);
     }
   })
@@ -85,13 +93,23 @@ function setUser(userData) { // set the data in the user bio card
     userImg.setAttribute('src', userData.image)
   } else {
     userImg.setAttribute('src', '/monster/human_new.png');
-    axios.patch(`users/${thisUser}`, {image: '../images/monster/human_new.png'})
+    axios.patch(`users/${thisUser}`, {
+      image: '../images/monster/human_new.png'
+    })
   }
 }
 
 
 function makeBlankGoalCard() {
   goalsDropdown.appendChild(makeDiv(['card', 'card-body'])).innerText = 'No goals yet! Head over to the ADD GOALS page to add some.'
+}
+
+function makeBlankWeaponCard() {
+  weaponsDropdown.appendChild(makeDiv(['card', 'card-body'])).innerText = 'No weapons yet! Head over to the SHOP page to buy some.'
+}
+
+function makeBlankMonsterCard() {
+  monstersDropdown.appendChild(makeDiv(['card', 'card-body'])).innerText = 'No monsters yet! Head over to the BATTLE page to fight for some.'
 }
 
 function makeGoalCard(data) { //make the cards in the dropdown for goals
@@ -184,5 +202,7 @@ function makeButton(type, id, tasks) { // make a button with given type and id
 function changePicture(item) {
   let source = item.getAttribute('src').replace('../images', '');
   userImg.setAttribute('src', source);
-  axios.patch(`/users/${thisUser}`, {image: source});
+  axios.patch(`/users/${thisUser}`, {
+    image: source
+  });
 }
