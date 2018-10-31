@@ -19,7 +19,7 @@ const validateUserID = (req, res, next) => {
 const validatePostBody = (req, res, next) => {
   const postSchema = Joi.object().keys({
     name: Joi.string().required(),
-    image: Joi.string().uri().required()
+    github_id: Joi.string(),
   })
 
   const { error } = Joi.validate(req.body, postSchema)
@@ -76,9 +76,9 @@ router.get('/', (req, res, next) => {
 })
 
 /* GET single user record */
-router.get('/verify', validateUserID, (req, res, next) => {
+router.get('/verify', (req, res, next) => {
   let jwtToken = req.cookies.jwt
-  let id = jwt.verify(jwt, process.env.TOKEN_SECRET).id
+  let id = jwt.verify(jwtToken, process.env.TOKEN_SECRET).id
   // let { id } = req.params
   knex('users')
   .where('id', id)
@@ -117,7 +117,7 @@ router.get('/verify', validateUserID, (req, res, next) => {
 
 /* POST new user record */
 router.post('/', validatePostBody, (req, res, next) => {
-  const { name, image } = req.body
+  const { name, github_id } = req.body
 
   knex('users')
   .insert({ name, image })
