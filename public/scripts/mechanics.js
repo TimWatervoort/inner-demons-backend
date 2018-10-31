@@ -107,7 +107,7 @@ function completeGoal(item) {
 function checkTasks(item) {
   let count = 0;
   let nums = item.id.replace(/complete/, ''); // remove the word complete from the id
-  let tasks = nums.split('tasks')[1].split(''); // get the array of tasks associated with the goal
+  let tasks = nums.split('tasks')[1].split('_'); // get the array of tasks associated with the goal
   tasks.forEach(x => { // make sure all tasks are set to true
     if (!localStorage.getItem(x)) count++;
   });
