@@ -132,6 +132,9 @@ function battlePhaseTwo(enemy) {
   axios.get(`/users/verify`)
     .then(result => {
       let wepsToUse = result.data.weapons;
+      if (wepsToUse.length === 0) {
+        return setHere.innerHTML = 'You need a weapon to fight! Head to the shop to buy one.';
+      }
       Promise.all(wepsToUse.map(x => {
           return axios.get(`/weapons/${x}`)
         }))
