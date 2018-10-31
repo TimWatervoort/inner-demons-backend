@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  if(!localStorage.getItem('user')) {
+  if (!localStorage.getItem('user')) {
     location.replace('intro.html')
   }
 
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let userMonsters = result.data.monsters;
       axios.get(`/monsters`)
         .then(result => {
+          let theMonsters = result.data;
           let allMons = result.data.map(x => x.id);
           let monsToGen = allMons.filter(y => {
             return !userMonsters.includes(y)
@@ -24,17 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
           if (monsToGen.length === 0) {
             setHere.innerHTML = `<h3 class = 'text-center text-white'>No available raid bosses!</h3>`
           } else {
-          Promise.all(monsToGen.map(z => {
-              return axios.get(`/monsters/${z}`)
-            }))
-            .then(result => {
-              let monstersData = result.map(i => i.data)
-              monstersData.sort((a,b) => {
-                return a.attack - b.attack
-              });
-              console.log(monstersData);
-              makeMonsterCard(monstersData);
+            let monstersData = theMonsters.filter(element => {
+              return monsToGen.includes(element.id);
             });
+            monstersData.sort((a, b) => {
+              return a.attack - b.attack
+            });
+            makeMonsterCard(monstersData);
           }
         });
     });

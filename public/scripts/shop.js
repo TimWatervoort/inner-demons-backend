@@ -30,6 +30,7 @@ function setUp() {
       goldCounter.innerText = `Your Gold: ${result.data.gold}`
       axios.get(`/weapons`)
         .then(result => {
+          let weaponsToMake = result.data;
           let allWeaps = result.data.map(x => x.id);
           let weapsToGen = allWeaps.filter(y => {
             return !userWeapons.includes(y)
@@ -37,16 +38,13 @@ function setUp() {
           if (weapsToGen.length === 0) {
             setHere.innerHTML = `<h3 class = 'text-center text-white'>No available weapons to buy!</h3>`
           } else {
-            Promise.all(weapsToGen.map(z => {
-                return axios.get(`/weapons/${z}`)
-              }))
-              .then(result => {
-                let weaponsData = result.map(i => i.data);
-                weaponsData.sort((a,b) => {
-                  return a.attack - b.attack
-                });
-                makeWeaponsCard(weaponsData);
-              });
+            let theWeapons = weaponsToMake.filter(wep => {
+              return weapsToGen.includes(wep.id);
+            });
+            theWeapons.sort((a, b) => {
+              return a.attack - b.attack
+            });
+            makeWeaponsCard(theWeapons);
           }
         });
     });
