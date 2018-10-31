@@ -30,7 +30,7 @@ setTimeout(setUp, 500);
 let theWeapons;
 
 function setUp() {
-  axios.get(`/users/${theUser}`)
+  axios.get(`/users/verify`)
     .then(result => {
       let userWeapons = result.data.weapons;
       goldCounter.innerText = `Your Gold: ${result.data.gold}`
@@ -127,7 +127,7 @@ function buyItem(item) { // send request to backend
   let info = item.id.replace(/buy/, '').split('cost');
   let id = parseInt(info[0]);
   let cost = parseInt(info[1]);
-  axios.get(`/users/${theUser}`).then(result => {
+  axios.get(`/users/verify`).then(result => {
     console.log(result.data.gold);
     let preGold = result.data.gold;
     if (preGold < cost) makeError();

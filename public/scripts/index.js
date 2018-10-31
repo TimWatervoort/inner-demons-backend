@@ -17,8 +17,10 @@ document.addEventListener(`DOMContentLoaded`, () => {
   const userGold = document.querySelector('#userGold');
   const userImg = document.querySelector('#userImg');
 
+  const logInButton = document.querySelector('#logInButton');
+
   axios.get(`/users/verify`).then(result => {
-    console.log(result.data)
+    localStorage.setItem('user', result.data.id)
     let user = result.data
     setUser(user);
     axios.get(`/weapons`).then(result => {
@@ -34,24 +36,30 @@ document.addEventListener(`DOMContentLoaded`, () => {
         if (user.goals.length === 0) {
           makeBlankGoalCard();
         } else {
-        Promise.all(user.goals.map(a => axios.get(`/goals/${a}`)))
-          .then(result => {
-            let theGoals = result.map(b => b.data)
-            theGoals.forEach(i => {
-              Promise.all(i.tasks.map(x => axios.get(`/tasks/${x}`)))
-                .then(result => {
-                  let theTasks = result.map(y => y.data)
-                  i.tasks = theTasks
-                  makeGoalCard([i])
-                })
+          Promise.all(user.goals.map(a => axios.get(`/goals/${a}`)))
+            .then(result => {
+              let theGoals = result.map(b => b.data)
+              theGoals.forEach(i => {
+                Promise.all(i.tasks.map(x => axios.get(`/tasks/${x}`)))
+                  .then(result => {
+                    let theTasks = result.map(y => y.data)
+                    i.tasks = theTasks
+                    makeGoalCard([i])
+                  })
+              })
             })
-          })
         }
       });
     });
   });
 
+  logInButton.addEventListener('click', logIn);
+
 });
+
+function logIn() {
+  location.replace('/auth/github');
+}
 
 const thisUser = localStorage.getItem('user'); // set the user
 
@@ -65,7 +73,9 @@ function setUser(userData) { // set the data in the user bio card
   userPasses.innerHTML += userData.passes;
   userMonsters.innerHTML += userData.monsters.length;
   userWeapons.innerHTML += userData.weapons.length;
-  userImg.setAttribute('src', userData.image)
+  if (userData.image) {
+    userImg.setAttribute('src', userData.image)
+  }
 }
 
 
@@ -74,26 +84,26 @@ function makeBlankGoalCard() {
 }
 
 function makeGoalCard(data) { //make the cards in the dropdown for goals
-    data.forEach(x => {
-      let ids = x.tasks.map(y => y.id);
-      let item = goalsDropdown.appendChild(makeDiv(['card', 'card-body']))
-      let row1 = item.appendChild(makeDiv(['row']));
-      let col1 = row1.appendChild(makeDiv(['col']));
-      let col2 = row1.appendChild(makeDiv(['col']));
-      col1.innerHTML += `Goal: ${x.name}`;
-      col2.appendChild(makeButton('complete', x.xp, ids.join(''))) //set the button's id as the word complete, the experience from the goal, and the tasks associated with the goal.
-      let row2 = item.appendChild(makeDiv(['row']));
-      let col3 = row2.appendChild(makeDiv(['col']));
-      let col4 = row2.appendChild(makeDiv(['col']));
-      col3.innerHTML += `\nExperience: ${x.xp}`
-      col4.appendChild(makeButton('remove', x.id));
-      let row3 = item.appendChild(makeDiv(['row']));
-      row3.innerHTML += '<strong>Click tasks to complete them.</strong>'
-      addTasks(x.tasks, row3);
-      if (localStorage.getItem(`complete${x.xp}tasks${ids.join('')}`)) {
-        item.classList.add('bg-dark');
-      }
-    });
+  data.forEach(x => {
+    let ids = x.tasks.map(y => y.id);
+    let item = goalsDropdown.appendChild(makeDiv(['card', 'card-body']))
+    let row1 = item.appendChild(makeDiv(['row']));
+    let col1 = row1.appendChild(makeDiv(['col']));
+    let col2 = row1.appendChild(makeDiv(['col']));
+    col1.innerHTML += `Goal: ${x.name}`;
+    col2.appendChild(makeButton('complete', x.xp, ids.join(''))) //set the button's id as the word complete, the experience from the goal, and the tasks associated with the goal.
+    let row2 = item.appendChild(makeDiv(['row']));
+    let col3 = row2.appendChild(makeDiv(['col']));
+    let col4 = row2.appendChild(makeDiv(['col']));
+    col3.innerHTML += `\nExperience: ${x.xp}`
+    col4.appendChild(makeButton('remove', x.id));
+    let row3 = item.appendChild(makeDiv(['row']));
+    row3.innerHTML += '<strong>Click tasks to complete them.</strong>'
+    addTasks(x.tasks, row3);
+    if (localStorage.getItem(`complete${x.xp}tasks${ids.join('')}`)) {
+      item.classList.add('bg-dark');
+    }
+  });
 }
 
 function addTasks(data, item) {
@@ -104,31 +114,31 @@ function addTasks(data, item) {
 }
 
 function makeWeaponsCard(data) { //make the cards in the dropdown for weapons
-    data.forEach(x => {
-      let item = weaponsDropdown.appendChild(makeDiv(['card', 'card-body']));
-      let row1 = item.appendChild(makeDiv(['row']));
-      let col1 = row1.appendChild(makeDiv(['col']));
-      col1.appendChild(makeImg(x.image));
-      let col2 = row1.appendChild(makeDiv(['col']));
-      col2.innerHTML += `<strong>${x.name}</strong>
+  data.forEach(x => {
+    let item = weaponsDropdown.appendChild(makeDiv(['card', 'card-body']));
+    let row1 = item.appendChild(makeDiv(['row']));
+    let col1 = row1.appendChild(makeDiv(['col']));
+    col1.appendChild(makeImg(x.image));
+    let col2 = row1.appendChild(makeDiv(['col']));
+    col2.innerHTML += `<strong>${x.name}</strong>
     <p>${x.description}</p>
     <p><strong>Attack: </strong>${x.attack}</p>
     <p><strong>Chaos: </strong>${x.chaos}</p>`;
-    });
+  });
 }
 
 function makeMonstersCard(data) { //make the cards in the dropdown for monsters
-    data.forEach(x => {
-      let item = monstersDropdown.appendChild(makeDiv(['card', 'card-body']));
-      let row1 = item.appendChild(makeDiv(['row']));
-      let col1 = row1.appendChild(makeDiv(['col']));
-      col1.appendChild(makeImg(x.image));
-      let col2 = row1.appendChild(makeDiv(['col']));
-      col2.innerHTML += `<strong>${x.name}</strong>
+  data.forEach(x => {
+    let item = monstersDropdown.appendChild(makeDiv(['card', 'card-body']));
+    let row1 = item.appendChild(makeDiv(['row']));
+    let col1 = row1.appendChild(makeDiv(['col']));
+    col1.appendChild(makeImg(x.image));
+    let col2 = row1.appendChild(makeDiv(['col']));
+    col2.innerHTML += `<strong>${x.name}</strong>
     <p>${x.description}</p>
     <p><strong>Attack: </strong>${x.attack}</p>
     <p><strong>HP: </strong>${x.hp}</p>`;
-    });
+  });
 }
 
 function makeImg(src) { // make an image for the weapons and monsters dropdowns

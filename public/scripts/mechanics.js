@@ -35,7 +35,7 @@ function completeTask(item) {
   item.classList.remove('btn-dark');
   item.classList.add('btn-primary');
   localStorage.setItem(id, true);
-  axios.get(`/users/${theUser}`)
+  axios.get(`/users/verify`)
   .then(result => {
     fadeMeIn(goldImage);
     setTimeout(() => fadeMeOut(goldImage), 2000);
@@ -82,7 +82,7 @@ function completeGoal(item) {
   localStorage.setItem(item.id, true);
   let nums = item.id.replace(/complete/, ''); // remove the word complete from the id
   let xp = parseInt(nums.split('tasks')[0]); // get the experience from the id
-  axios.get(`/users/${theUser}`)
+  axios.get(`/users/verify`)
   .then(result => {
     let level = parseInt(result.data.level); // get the user's stats in case we need to update them
     let hp = parseInt(result.data.hp);

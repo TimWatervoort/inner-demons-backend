@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  if (!localStorage.getItem('user')) {
-    location.replace('intro.html')
-  }
+  // if (!localStorage.getItem('user')) {
+  //   location.replace('intro.html')
+  // }
 
   const setHere = document.querySelector('#setHere');
   // const url = 'https://fathomless-chamber-53771.herokuapp.com';
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentAlly;
   let monstersData;
 
-  axios.get(`/users/${theUser}`)
+  axios.get(`/users/verify`)
     .then(result => {
       let userMonsters = result.data.monsters;
       axios.get(`/monsters`)
@@ -129,7 +129,7 @@ function battlePhaseTwo(enemy) {
   setHere.style.opacity = 1;
   setHere.classList.remove('row');
   setHere.innerHTML += `<h5 class = "mx-auto text-center">Choose a weapon!</h5><br>`
-  axios.get(`/users/${theUser}`)
+  axios.get(`/users/verify`)
     .then(result => {
       let wepsToUse = result.data.weapons;
       Promise.all(wepsToUse.map(x => {
@@ -145,7 +145,7 @@ function battlePhaseTwo(enemy) {
 function battlePhaseThree() {
   setHere.innerHTML = '';
   setHere.innerHTML = `<h5 class = "mx-auto text-center">Choose an ally!</h5><br>`
-  axios.get(`/users/${theUser}`)
+  axios.get(`/users/verify`)
     .then(result => {
       let monsToUse = result.data.monsters;
       if (monsToUse.length === 0) {
@@ -162,7 +162,7 @@ function battlePhaseThree() {
 }
 
 function battlePhaseFour() {
-  axios.get(`/users/${theUser}`)
+  axios.get(`/users/verify`)
     .then(result => {
       let thisUser = result.data;
       setHere.innerHTML = `

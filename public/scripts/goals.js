@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // const url = 'https://fathomless-chamber-53771.herokuapp.com';
   const theUser = localStorage.getItem('user');
 
-  axios.get(`/users/${theUser}`).then(result => {
+  axios.get(`/users/verify`).then(result => {
     let user = result.data
     axios.get(`/goals/`)
       .then(result => {
