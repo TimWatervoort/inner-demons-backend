@@ -123,7 +123,7 @@ function dukeItOut(ally, weapon, monster, user) {
 function victoryScreen(monster) {
   setHere.innerHTML = '';
   setHere.innerHTML = `<h3 class='text-center text-white'>Congratulations!</h3><hr><img class = 'weaponImg' src=${monster.image} style='margin:auto;'><hr><h5 class = 'text-center text-white'>${monster.name} is now available as an ally.</h5>
-  <h6>You have been healed. You can try again or return home.</h6>
+  <h6>You have been healed. You can fight another enemy or return home.</h6>
   <a class='btn btn-dark mr-2' href='battle.html'>BATTLE MORE</a>
   <a class='btn btn-dark ml-2' href='../home.html'>RETURN HOME</a>`
 }

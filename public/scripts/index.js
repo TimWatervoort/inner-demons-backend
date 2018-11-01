@@ -128,15 +128,15 @@ function setUser(userData) { // set the data in the user bio card
 
 
 function makeBlankGoalCard() {
-  goalsDropdown.appendChild(makeDiv(['card', 'card-body'])).innerText = 'No goals yet! Head over to the ADD GOALS page to add some.'
+  goalsDropdown.appendChild(makeDiv(['card', 'card-body'])).innerHTML = '<p>No goals yet! Head over to the <a href="pages/goals.html">ADD GOALS</a> page to add some.</p>'
 }
 
 function makeBlankWeaponCard() {
-  weaponsDropdown.appendChild(makeDiv(['card', 'card-body'])).innerText = 'No weapons yet! Head over to the SHOP page to buy some.'
+  weaponsDropdown.appendChild(makeDiv(['card', 'card-body'])).innerHTML = '<p>No weapons yet! Head over to the <a href="pages/shop.html">SHOP</a> page to buy some.</p>'
 }
 
 function makeBlankMonsterCard() {
-  monstersDropdown.appendChild(makeDiv(['card', 'card-body'])).innerText = 'No monsters yet! Head over to the BATTLE page to fight for some.'
+  monstersDropdown.appendChild(makeDiv(['card', 'card-body'])).innerHTML = '<p>No monsters yet! Head over to the <a href="pages/battle.html">BATTLE</a> page to fight for some.</p>'
 }
 
 function makeGoalCard(data) { //make the cards in the dropdown for goals
