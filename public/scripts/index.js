@@ -104,7 +104,6 @@ function setUser(userData) { // set the data in the user bio card
   userXP.innerHTML += userData.xp;
   userHP.innerHTML += userData.hp;
   userGold.innerHTML += userData.gold;
-  userMonsters.innerHTML += userData.monsters.length;
   if (userData.image) {
     userImg.setAttribute('src', userData.image)
   } else {
@@ -114,6 +113,7 @@ function setUser(userData) { // set the data in the user bio card
     })
     axios.post('/monsters_users', {user_id: thisUser, monster_id:10})
   }
+  userMonsters.innerHTML += userData.monsters.length;
   userWeapons.innerHTML += userData.weapons.length;
 }
 
