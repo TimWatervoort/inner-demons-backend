@@ -26,6 +26,8 @@ const attackSorter = document.querySelector('#attackSorter');
 
 let theWeapons;
 
+setUp();
+
 function setUp() {
   axios.get(`/users/verify`)
     .then(result => {
