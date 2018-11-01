@@ -13,7 +13,6 @@ document.addEventListener(`DOMContentLoaded`, () => {
   const userWeapons = document.querySelector('#userWeapons');
   const userMonsters = document.querySelector('#userMonsters');
   const userHP = document.querySelector('#userHP');
-  const userPasses = document.querySelector('#userPasses');
   const userGold = document.querySelector('#userGold');
   const userImg = document.querySelector('#userImg');
 
@@ -86,7 +85,6 @@ function setUser(userData) { // set the data in the user bio card
   userXP.innerHTML += userData.xp;
   userHP.innerHTML += userData.hp;
   userGold.innerHTML += userData.gold;
-  userPasses.innerHTML += userData.passes;
   userMonsters.innerHTML += userData.monsters.length;
   userWeapons.innerHTML += userData.weapons.length;
   if (userData.image) {

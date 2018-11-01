@@ -41,19 +41,9 @@ function completeTask(item) {
     setTimeout(() => fadeMeOut(goldImage), 2000);
     userGold.innerHTML = parseInt(userGold.innerHTML) + 10;
     console.log(result.data);
-    let passes = parseInt(result.data.passes);
     let preGold = parseInt(result.data.gold);
     let newGold = preGold+gold;
-    let prePass = parseInt(result.data.points_toward_pass);
-    let newPass = prePass+1;
-    console.log(prePass, newPass);
-    axios.patch(`/users/${theUser}`, {gold: newGold, points_toward_pass: newPass})
-    .then(result => {
-      if (result.data.points_toward_pass == 5) {
-        passes++;
-        axios.patch(`/users/${theUser}`, {points_toward_pass: 0, passes: passes})
-      }
-    });
+    axios.patch(`/users/${theUser}`, {gold: newGold})
   })
 
 }

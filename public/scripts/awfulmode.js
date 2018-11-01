@@ -17,6 +17,13 @@ const body = document.querySelector('body');
 const userBio = document.querySelector('#userBio');
 const userImg = document.querySelector('#userImg');
 const userName = document.querySelector('#userName');
+const buttons = document.querySelectorAll('button');
+const userLevel = document.querySelector('#userLevel');
+const userXP = document.querySelector('#userXP');
+const userWeapons = document.querySelector('#userWeapons');
+const userMonsters = document.querySelector('#userMonsters');
+const userHP = document.querySelector('#userHP');
+const userGold = document.querySelector('#userGold');
 
 function checkOpacity() {
   if (awfulButton.style.opacity == 0) {
@@ -27,8 +34,15 @@ function checkOpacity() {
 }
 
 function activate() {
+  userLevel.innerText = 'AWFUL MODE';
+  userXP.innerText = 'AWFUL MODE';
+  userWeapons.innerText = 'AWFUL MODE';
+  userMonsters.innerText = 'AWFUL MODE';
+  userHP.innerText = 'AWFUL MODE';
+  userGold.innerText = 'AWFUL MODE';
   body.style['background-color'] = 'yellow';
   userBio.classList.add('spinnyBoi');
+  userBio.style.color = 'green';
   document.addEventListener('mouseover', function(event) {
     event.target.style['font-size'] = '30px';
   });
@@ -45,6 +59,12 @@ function activate() {
   });
   userImg.setAttribute('src', 'https://m.media-amazon.com/images/M/MV5BMTQ2NjM5NjE5NF5BMl5BanBnXkFtZTYwNTk3MjUz._V1_UY317_CR0,0,214,317_AL_.jpg');
   userName.innerText = 'Gary Busey';
+  buttons.forEach(button => {
+    button.classList.remove('btn-dark');
+    button.classList.remove('btn-light');
+    button.classList.add('btn-warning');
+    button.style.color = 'green';
+  });
   changeButton();
 }
 
