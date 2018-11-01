@@ -74,7 +74,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
 });
 
 function logOut() {
-  location.replace('/logout');
+  location.replace('/auth/logout');
 }
 
 const thisUser = localStorage.getItem('user'); // set the user
