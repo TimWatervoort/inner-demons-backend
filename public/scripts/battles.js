@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // if (!localStorage.getItem('user')) {
-  //   location.replace('intro.html')
-  // }
+  if (!localStorage.getItem('user')) {
+    location.replace('../index.html')
+  }
 
   const setHere = document.querySelector('#setHere');
   // const url = 'https://fathomless-chamber-53771.herokuapp.com';

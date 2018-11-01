@@ -1,4 +1,9 @@
 document.addEventListener(`DOMContentLoaded`, () => {
+
+  if(!localStorage.getItem('user')) {
+    location.replace('/index.html');
+  }
+
   const goalsDropdown = document.querySelector('#goalsDropdown');
   const weaponsDropdown = document.querySelector('#weaponsDropdown');
   const monstersDropdown = document.querySelector('#monstersDropdown');

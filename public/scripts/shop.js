@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   if (!localStorage.getItem('user')) {
-    location.replace('intro.html')
+    location.replace('../index.html')
   }
 
   const setHere = document.querySelector('#setHere');
