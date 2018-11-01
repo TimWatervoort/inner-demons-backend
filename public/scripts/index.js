@@ -1,6 +1,6 @@
 document.addEventListener(`DOMContentLoaded`, () => {
 
-  if(!/jwt/.test(document.cookie)) {
+  if (!/jwt/.test(document.cookie)) {
     location.replace('/index.html');
   }
 
@@ -27,7 +27,17 @@ document.addEventListener(`DOMContentLoaded`, () => {
   axios.get(`/users/verify`).then(result => {
     localStorage.setItem('user', result.data.id)
     let user = result.data
-    setUser(user);
+    console.log(user.id, user.image);
+    if (user.image == null) {
+      axios.patch(`/users/${user.id}`, {
+        image: '../images/monster/human_new.png'
+      })
+      .then(() => {
+        setUser(user);
+      })
+    } else {
+      setUser(user);
+    }
     axios.get(`/weapons`).then(result => {
       let weps = result.data.filter(x => {
         return user.weapons.includes(x.id);
@@ -43,7 +53,10 @@ document.addEventListener(`DOMContentLoaded`, () => {
         });
         if (mons.length === 0) {
           makeBlankMonsterCard();
-          axios.post('/monsters_users', {user_id: user.id, monster_id:10})
+          axios.post('/monsters_users', {
+            user_id: user.id,
+            monster_id: 1
+          })
         } else {
           makeMonstersCard(mons);
         }
@@ -83,7 +96,6 @@ document.addEventListener(`DOMContentLoaded`, () => {
   logOutButton.addEventListener('click', logOut);
 
   imgModal.addEventListener('click', event => {
-    console.log(event.target);
     if (event.target.hasAttribute('src')) {
       changePicture(event.target);
     }
@@ -96,7 +108,7 @@ function logOut() {
   location.replace('/auth/logout');
 }
 
-const thisUser = localStorage.getItem('user'); // set the user
+let thisUser = localStorage.getItem('user'); // set the user
 
 
 function setUser(userData) { // set the data in the user bio card
@@ -109,9 +121,6 @@ function setUser(userData) { // set the data in the user bio card
     userImg.setAttribute('src', userData.image)
   } else {
     userImg.setAttribute('src', '/monster/human_new.png');
-    axios.patch(`users/${thisUser}`, {
-      image: '../images/monster/human_new.png'
-    })
   }
   userMonsters.innerHTML += userData.monsters.length;
   userWeapons.innerHTML += userData.weapons.length;
@@ -219,6 +228,8 @@ function makeButton(type, id, tasks) { // make a button with given type and id
 }
 
 function changePicture(item) {
+  thisUser = localStorage.getItem('user');
+  console.log(thisUser);
   let source = item.getAttribute('src').replace('../images', '');
   userImg.setAttribute('src', source);
   axios.patch(`/users/${thisUser}`, {
