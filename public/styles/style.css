@@ -70,3 +70,27 @@ body {
     transform: rotate(360deg);
   }
 }
+
+@media(orientation:portrait) {
+  .col{
+    font-size: 30px;
+  }
+  .dropdown-btn, #imgChanger {
+    font-size: 30px;
+  }
+  #imgChanger {
+    width: 250px;
+  }
+  h5 {
+    font-size: 40px;
+  }
+  .navbar-brand {
+    font-size: 40px;
+  }
+  a {
+    font-size: 30px;
+  }
+  p {
+    font-size: 30px;
+  }
+}
