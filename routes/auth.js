@@ -3,15 +3,10 @@ const router = require('express').Router()
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 
-// // auth login
-// router.get('/login', (req, res) => {
-//     res.sendfile('./public/index.html')
-// })
-
-// auth logout
+// auth login
 router.get('/logout', (req, res) => {
-  req.logOut()
-  req.session = null
+  req.logout()
+  res.clearCookie('jwt')
   res.redirect('/')
 })
 
