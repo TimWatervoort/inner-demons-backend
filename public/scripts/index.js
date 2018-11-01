@@ -30,11 +30,11 @@ document.addEventListener(`DOMContentLoaded`, () => {
     console.log(user.id, user.image);
     if (user.image == null) {
       axios.patch(`/users/${user.id}`, {
-        image: '../images/monster/human_new.png'
-      })
-      .then(() => {
-        setUser(user);
-      })
+          image: '../images/monster/human_new.png'
+        })
+        .then(() => {
+          setUser(user);
+        })
     } else {
       setUser(user);
     }
@@ -48,16 +48,19 @@ document.addEventListener(`DOMContentLoaded`, () => {
         makeWeaponsCard(weps)
       }
       axios.get(`/monsters`).then(result => {
-        let mons = result.data.filter(y => {
-          return user.monsters.includes(y.id);
-        });
-        if (mons.length === 0) {
-          makeBlankMonsterCard();
+        if (user.monsters.length === 0) {
           axios.post('/monsters_users', {
             user_id: user.id,
             monster_id: 10
           })
+          let turtle = result.data.filter(turt => {
+            return turt.id == 10;
+          });
+          makeMonstersCard(turtle);
         } else {
+          let mons = result.data.filter(y => {
+            return user.monsters.includes(y.id);
+          });
           makeMonstersCard(mons);
         }
         if (user.goals.length === 0) {
