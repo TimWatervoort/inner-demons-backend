@@ -125,7 +125,11 @@ function setUser(userData) { // set the data in the user bio card
   } else {
     userImg.setAttribute('src', '/monster/human_new.png');
   }
-  userMonsters.innerHTML += userData.monsters.length;
+  if (userData.monsters.length === 0) {
+    userMonsters.innerHTML += '1';
+  } else {
+    userMonsters.innerHTML += userData.monsters.length;
+  }
   userWeapons.innerHTML += userData.weapons.length;
 }
 
