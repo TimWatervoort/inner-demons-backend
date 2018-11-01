@@ -24,9 +24,6 @@ const costSorter = document.querySelector('#costSorter');
 const chaosSorter = document.querySelector('#chaosSorter');
 const attackSorter = document.querySelector('#attackSorter');
 
-
-setTimeout(setUp, 500);
-
 let theWeapons;
 
 function setUp() {
@@ -56,6 +53,12 @@ function setUp() {
 attackSorter.addEventListener('click', sortByAttack);
 chaosSorter.addEventListener('click', sortByChaos);
 costSorter.addEventListener('click', sortByCost);
+
+setTimeout(() => {
+  if (theWeapons.length === 0) {
+    setUp();
+  }
+}, 3000)
 
 
 function sortByAttack() {
