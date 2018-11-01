@@ -43,6 +43,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
         });
         if (mons.length === 0) {
           makeBlankMonsterCard();
+          axios.post('/monsters_users', {user_id: user.id, monster_id:10})
         } else {
           makeMonstersCard(mons);
         }
@@ -111,7 +112,6 @@ function setUser(userData) { // set the data in the user bio card
     axios.patch(`users/${thisUser}`, {
       image: '../images/monster/human_new.png'
     })
-    axios.post('/monsters_users', {user_id: thisUser, monster_id:10})
   }
   userMonsters.innerHTML += userData.monsters.length;
   userWeapons.innerHTML += userData.weapons.length;
