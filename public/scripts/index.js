@@ -86,7 +86,6 @@ function setUser(userData) { // set the data in the user bio card
   userHP.innerHTML += userData.hp;
   userGold.innerHTML += userData.gold;
   userMonsters.innerHTML += userData.monsters.length;
-  userWeapons.innerHTML += userData.weapons.length;
   if (userData.image) {
     userImg.setAttribute('src', userData.image)
   } else {
@@ -95,6 +94,7 @@ function setUser(userData) { // set the data in the user bio card
       image: '../images/monster/human_new.png'
     })
   }
+  userWeapons.innerHTML += userData.weapons.length;
 }
 
 
