@@ -73,7 +73,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
 
 });
 
-function logIn() {
+function logOut() {
   location.replace('/logout');
 }
 
