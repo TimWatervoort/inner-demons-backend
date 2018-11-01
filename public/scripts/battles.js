@@ -133,7 +133,7 @@ function battlePhaseTwo(enemy) {
     .then(result => {
       let wepsToUse = result.data.weapons;
       if (wepsToUse.length === 0) {
-        return setHere.innerHTML = 'You need a weapon to fight! Head to the shop to buy one.';
+        return setHere.innerHTML = '<p>You need a weapon to fight! Head to <a href="shop.html">the shop</a> to buy one.</p>';
       }
       Promise.all(wepsToUse.map(x => {
           return axios.get(`/weapons/${x}`)
