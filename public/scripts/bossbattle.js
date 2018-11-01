@@ -87,7 +87,7 @@ function dukeItOut(ally, weapon, monster, user) {
   monsterHP -= userAttack(ally, weapon, user, monster)
   console.log("Monster Health: ", monsterHP)
   if (monsterHP <= 0) {
-    setHere.innerHTML += `<br>You slayed ${monster.name} with a ${weapon.name}!`
+    setHere.innerHTML += `<br>You slayed ${monster.name} with ${weapon.name}!`
     console.log(`You slayed the monster with ${weapon.name}!`)
     axios.post(`/monsters_users`, {
         user_id: user.id,
