@@ -1,6 +1,6 @@
 document.addEventListener(`DOMContentLoaded`, () => {
 
-  if(!localStorage.getItem('user')) {
+  if(!/jwt/.test(document.cookie)) {
     location.replace('/index.html');
   }
 
