@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function sortByAttack () {
     monstersData.sort((a, b) => {
-      return a.attack - b.attack
+      return a.attack - b.attack || a.hp - b.hp
     });
     makeMonsterCard(monstersData);
   }
