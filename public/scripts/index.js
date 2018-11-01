@@ -143,9 +143,10 @@ function makeGoalCard(data) { //make the cards in the dropdown for goals
     let col4 = row2.appendChild(makeDiv(['col']));
     col3.innerHTML += `\nExperience: ${x.xp}`
     col4.appendChild(makeButton('remove', x.id));
-    let row3 = item.appendChild(makeDiv(['row']));
-    row3.innerHTML += '<strong>Click tasks to complete them.</strong>'
-    addTasks(x.tasks, row3);
+    let row3 = item.appendChild(makeDiv(['row', 'mx-auto', 'text-center']));
+    row3.innerHTML += '<strong>Click tasks to complete them.</strong>';
+    let row4 = item.appendChild(makeDiv(['row', 'mx-auto', 'text-center']));
+    addTasks(x.tasks, row4);
     if (localStorage.getItem(`complete${x.xp}tasks${ids.join('_')}`)) {
       item.classList.add('bg-dark');
     }
