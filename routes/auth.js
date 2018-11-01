@@ -11,9 +11,8 @@ const jwt = require('jsonwebtoken')
 // auth logout
 router.get('/logout', (req, res) => {
   req.logOut()
-  req.session.destroy(() => {
-    res.redirect('/')
-  })
+  req.session = null
+  res.redirect('/')
 })
 
 // auth with github
