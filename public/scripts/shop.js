@@ -48,17 +48,20 @@ function setUp() {
           }
         });
     });
+
+    setTimeout(() => {
+      if (theWeapons.length === 0) {
+        setUp();
+      }
+    }, 3000);
+
 }
 
 attackSorter.addEventListener('click', sortByAttack);
 chaosSorter.addEventListener('click', sortByChaos);
 costSorter.addEventListener('click', sortByCost);
 
-setTimeout(() => {
-  if (theWeapons.length === 0) {
-    setUp();
-  }
-}, 3000)
+
 
 
 function sortByAttack() {
