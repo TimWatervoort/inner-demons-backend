@@ -55,7 +55,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
           makeBlankMonsterCard();
           axios.post('/monsters_users', {
             user_id: user.id,
-            monster_id: 1
+            monster_id: 10
           })
         } else {
           makeMonstersCard(mons);
