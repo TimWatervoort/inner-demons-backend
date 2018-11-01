@@ -78,6 +78,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
 });
 
 function logOut() {
+  localStorage.clear();
   location.replace('/auth/logout');
 }
 
