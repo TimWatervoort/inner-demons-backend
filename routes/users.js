@@ -75,44 +75,88 @@ router.get('/', (req, res, next) => {
   .catch(err => next(err))
 })
 
-/* GET single user record */
+/* VERIFY and GET single user record */
 router.get('/verify', (req, res, next) => {
   let jwtToken = req.cookies.jwt
   let id = jwt.verify(jwtToken, process.env.TOKEN_SECRET).id
-  // let { id } = req.params
+
   knex('users')
-  .where('id', id)
-  .then(([user]) => {
-    knex('monsters_users')
-    .where('user_id', user.id)
-    .then(monsters => {
-      user["monsters"] = []
-      monsters.forEach(monster => {
-        user['monsters'].push(monster.monster_id)
-      })
-    })
-    .then(() => {
-      knex('weapons_users')
-      .where('user_id', user.id)
-      .then(weapons => {
-        user['weapons'] = []
-        weapons.forEach(weapon => {
-          user['weapons'].push(weapon.weapon_id)
+    .where('id', id)
+    .then(([user]) => {
+      knex('monsters_users')
+        .where('user_id', user.id)
+        .then(monsters => {
+          let monsIdArr = []
+          monsters.forEach(monster => {
+            monsIdArr.push(monster.monster_id)
+          })
+          user['monsters'] = monsIdArr
         })
-      })
-    })
-    .then(() => {
-      knex('goals_users')
-      .where('user_id', user.id)
-      .then(goals => {
-        user['goals'] = []
-        goals.forEach(goal => {
-          user['goals'].push(goal.goal_id)
+        .then(() => {
+          knex('weapons_users')
+            .where('user_id', user.id)
+            .then(weapons => {
+              let weapsIdArr = []
+              weapons.forEach(weapon => {
+                weapsIdArr.push(weapon.weapon_id)
+              })
+              user['weapons'] = weapsIdArr
+            })
+            .then(() => {
+              knex('goals_users')
+                .where('user_id', user.id)
+                .then(goals => {
+                  let goalsIdArr = []
+                  goals.forEach(goal => {
+                    goalsIdArr.push(goal.goal_id)
+                  })
+                  user['goals'] = goalsIdArr
+                  res.status(200).json(user)
+                })
+            })
         })
-        res.status(200).json(user)
-      })
     })
-  })
+})
+
+/* GET a single user record */
+router.get('/:id', (req, res, next) => {
+  let { id } = req.params
+  knex('users')
+    .where('id', id)
+    .then(([user]) => {
+      knex('monsters_users')
+        .where('user_id', user.id)
+        .then(monsters => {
+          let monsIdArr = []
+          monsters.forEach(monster => {
+            monsIdArr.push(monster.monster_id)
+          })
+          user['monsters'] = monsIdArr
+        })
+        .then(() => {
+          knex('weapons_users')
+            .where('user_id', user.id)
+            .then(weapons => {
+              let weapsIdArr = []
+              weapons.forEach(weapon => {
+                weapsIdArr.push(weapon.weapon_id)
+              })
+              user['weapons'] = weapsIdArr
+            })
+            .then(() => {
+              knex('goals_users')
+                .where('user_id', user.id)
+                .then(goals => {
+                  let goalsIdArr = []
+                  goals.forEach(goal => {
+                    goalsIdArr.push(goal.goal_id)
+                  })
+                  user['goals'] = goalsIdArr
+                  res.status(200).json(user)
+                })
+            })
+        })
+    })
 })
 
 /* POST new user record */
