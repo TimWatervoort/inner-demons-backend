@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const body = document.querySelector('body');
 const userBio = document.querySelector('#userBio');
 const userImg = document.querySelector('#userImg');
+const userName = document.querySelector('#userName');
 
 function checkOpacity() {
   if (awfulButton.style.opacity == 0) {
@@ -43,6 +44,7 @@ function activate() {
     }
   });
   userImg.setAttribute('src', 'https://m.media-amazon.com/images/M/MV5BMTQ2NjM5NjE5NF5BMl5BanBnXkFtZTYwNTk3MjUz._V1_UY317_CR0,0,214,317_AL_.jpg');
+  userName.innerText = 'Gary Busey';
   changeButton();
 }
 

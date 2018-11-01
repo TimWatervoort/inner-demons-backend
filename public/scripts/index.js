@@ -62,7 +62,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
     });
   });
 
-  logInButton.addEventListener('click', logOut);
+  logOutButton.addEventListener('click', logOut);
 
   imgModal.addEventListener('click', event => {
     console.log(event.target);
