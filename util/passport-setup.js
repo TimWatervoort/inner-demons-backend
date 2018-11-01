@@ -4,16 +4,16 @@ const GitHubStrategy = require('passport-github').Strategy
 const auth = require('./auth')
 
 passport.serializeUser((user, done) => {
-  console.log("in serializeUser ", user)
+  // console.log("in serializeUser ", user)
   done(null, user.github_id) // go to deserializeUser
 })
 
 // Get user to store in req.user
 passport.deserializeUser((github_id, done) => {
-  console.log('inside deser user : ', github_id)
+  // console.log('inside deser user : ', github_id)
   auth.findGitHubUser(github_id)
     .then(user => {
-      console.log(user)
+      // console.log(user)
       done(null, user)
     })
 })
@@ -27,17 +27,17 @@ passport.use(
     // passport call back function
     (accessToken, refreshToken, profile, done) => {
 
-      console.log('>>> passport callback function fired <<<')
-      console.log(profile)
+      // console.log('>>> passport callback function fired <<<')
+      // console.log(profile)
 
       // Check if user is in our psql db, if not, make them
       auth.findGitHubUser(profile._json.id)
         .then(currentUser => {
-          console.log('currentUser >>>', currentUser)
-          console.log('profile >>>', profile)
+          // console.log('currentUser >>>', currentUser)
+          // console.log('profile >>>', profile)
           if (currentUser) {
             // already have the user
-            console.log('user is: >>>', currentUser)
+            // console.log('user is: >>>', currentUser)
             // null if error, or pass user
             done(null, currentUser) // when done is called, we go to passport.serializeUser
           } else {
@@ -46,10 +46,11 @@ passport.use(
               name: profile.username,
               github_id: profile.id
             }
-            auth.postNewUser(newUser).then((newUser) => {
-              done(null, newUser)
-            })
-            console.log(`>>> created new user ${newUser.name} <<<`)
+            auth.postNewUser(newUser)
+              .then((newUser) => {
+                // console.log(`>>> created new user ${newUser.name} <<<`)
+                done(null, newUser)
+              })
             // when done is called, we go to passport.serializeUser
           }
         })

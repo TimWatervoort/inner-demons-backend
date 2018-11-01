@@ -6,7 +6,7 @@ const findGitHubUser = (githubId) => {
     .then(([user]) => {
       return user
     })
-    .catch(err => console.log(`GitHub oAuth route error: ${err}`) )
+    .catch(err => console.log(`findGitHubUser oAuth route error: ${err}`) )
 }
 
 const postNewUser = (newUserObj) => {
@@ -14,7 +14,7 @@ const postNewUser = (newUserObj) => {
     .insert(newUserObj)
     .returning('*')
     .then(([user]) => user)
-    .catch(err => console.log(`GitHub oAuth route error: ${err}`) )
+    .catch(err => console.log(`postNewUser oAuth route error: ${err}`) )
 }
 
 module.exports = { findGitHubUser, postNewUser }
