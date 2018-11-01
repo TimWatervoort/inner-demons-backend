@@ -66,6 +66,19 @@ document.addEventListener(`DOMContentLoaded`, () => {
     });
   });
 
+  goalsButton.addEventListener('click', () => {
+    weaponsDropdown.classList.remove('show');
+    monstersDropdown.classList.remove('show');
+  });
+  weaponsButton.addEventListener('click', () => {
+    goalsDropdown.classList.remove('show');
+    monstersDropdown.classList.remove('show');
+  });
+  monstersButton.addEventListener('click', () => {
+    weaponsDropdown.classList.remove('show');
+    goalsDropdown.classList.remove('show');
+  });
+
   logOutButton.addEventListener('click', logOut);
 
   imgModal.addEventListener('click', event => {
