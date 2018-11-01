@@ -123,13 +123,13 @@ function dukeItOut(ally, weapon, monster, user) {
 function victoryScreen(monster) {
   setHere.innerHTML = '';
   setHere.innerHTML = `<h3 class='text-center text-white'>Congratulations!</h3><hr><img class = 'weaponImg' src=${monster.image} style='margin:auto;'><hr><h5 class = 'text-center text-white'>${monster.name} is now available as an ally.</h5>
-  <a class='btn btn-dark mr-2' href='battles.html'>BATTLE MORE</a>
+  <a class='btn btn-dark mr-2' href='battle.html'>BATTLE MORE</a>
   <a class='btn btn-dark ml-2' href='../home.html'>RETURN HOME</a>`
 }
 
 function killScreen(monster) {
   setHere.innerHTML = ''
   setHere.innerHTML = `<h3 class='text-center text-white'>You have been slain!</h3><hr><img class = 'weaponImg' src=${monster.image} style='margin:auto;'><hr><h5 class = 'text-center text-white'>${monster.name} was too great a foe.</h5>
-  <a class='btn btn-dark mr-2' href='battles.html'>BATTLE MORE</a>
+  <a class='btn btn-dark mr-2' href='battle.html'>BATTLE MORE</a>
   <a class='btn btn-dark ml-2' href='../home.html'>RETURN HOME</a>`
 }
