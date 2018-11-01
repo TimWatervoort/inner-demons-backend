@@ -10,7 +10,7 @@
   <title>Inner Demons</title>
 </head>
 
-<body>
+<body style='background-color: black;'>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="index.html">Inner<i class="fas fa-skull-crossbones"></i>Demons</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,8 +36,16 @@
         </li>
       </ul>
     </div>
-    <a class='nav-link btn btn-secondary' id='logInButton'>Log In</a>
+    <a class='nav-link btn btn-secondary' id='logOutButton'>Log Out</a>
   </nav>
+
+  <button class='btn btn-dark ml-0 mt-1' style='float:left; opacity:0;' id='key1'><i class="fas fa-key"></i></button>
+  <button class='btn btn-dark mr-0 mt-1' style='float:right; opacity:0;' id='key2'><i class="fas fa-key"></i></button>
+  <div class='container'>
+    <div class='row mx-auto text-center'>
+      <button class='btn btn-warning mt-1 mx-auto' style='opacity:0;' id='awfulButton'>ACTIVATE AWFUL MODE</button>
+    </div>
+  </div>
 
   <div class='container mt-4 p-3 ml-5' id='userBio'>
     <div class="media">
@@ -136,9 +144,9 @@ Change Image
     </div>
   </div>
 
-
   <script src='scripts/index.js'></script>
   <script src='scripts/mechanics.js'></script>
+  <script src='scripts/awfulmode.js'></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

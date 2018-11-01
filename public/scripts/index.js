@@ -17,7 +17,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
   const userGold = document.querySelector('#userGold');
   const userImg = document.querySelector('#userImg');
 
-  const logInButton = document.querySelector('#logInButton');
+  const logOutButton = document.querySelector('#logOutButton');
   const imgModal = document.querySelector('#imgModal');
 
   axios.get(`/users/verify`).then(result => {
@@ -62,7 +62,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
     });
   });
 
-  logInButton.addEventListener('click', logIn);
+  logInButton.addEventListener('click', logOut);
 
   imgModal.addEventListener('click', event => {
     console.log(event.target);
@@ -74,7 +74,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
 });
 
 function logIn() {
-  location.replace('/auth/github');
+  location.replace('/logout');
 }
 
 const thisUser = localStorage.getItem('user'); // set the user
