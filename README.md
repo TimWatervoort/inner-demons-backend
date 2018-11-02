@@ -54,6 +54,7 @@ Now you can go back to your character sheet and look at your goals, weapons and 
 
 ![Character Sheet Weapons](07_characterSheet_weapons.png)
 
+Awesome, now go have fun playing Inner Demons!
 
 For serious though, thanks so much for playing our game.  This game was made by:
 Tim Watervoot
