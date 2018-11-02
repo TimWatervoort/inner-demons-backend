@@ -7,10 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const setHere = document.querySelector('#setHere');
   const goldCounter = document.querySelector('#goldCounter');
 
-  let setError = document.querySelector('#errorMsg');
-  setError.style.opacity = 0;
-  setError.innerHTML = `<p class = 'text-center mx-auto pt-3'>Not enough gold, bucko!<p>`;
-
   document.addEventListener('click', event => {
     if (/buy/.test(event.target.id)) {
       buyItem(event.target);
@@ -118,27 +114,25 @@ function makeImg(src) { // make an image
   return image;
 }
 
-function makeError() {
-  let setError = document.querySelector('#errorMsg');
-  setError.classList.add('bg-danger');
-  fadeMeIn(setError);
-  setTimeout(() => fadeMeOut(setError), 2000)
-}
-
-function clearError() {
-  let setError = document.querySelector('#errorMsg');
-  setError.classList.remove('bg-danger');
+function makeError(item) {
+  item.innerText = "CAN'T AFFORD";
+  item.classList.remove('btn-dark');
+  item.classList.add('btn-danger');
+  setTimeout(() => {
+    item.innerText = "BUY";
+    item.classList.remove('btn-danger');
+    item.classList.add('btn-dark');
+  }, 2000);
 }
 
 function buyItem(item) { // send request to backend
-  clearError();
   let info = item.id.replace(/buy/, '').split('cost');
   let id = parseInt(info[0]);
   let cost = parseInt(info[1]);
   axios.get(`/users/verify`).then(result => {
     console.log(result.data.gold);
     let preGold = result.data.gold;
-    if (preGold < cost) makeError();
+    if (preGold < cost) makeError(document.querySelector(`#${item.id}`));
     else {
       document.getElementById(item.id).innerText = 'BOUGHT'
       document.getElementById(item.id).id = 'x';
