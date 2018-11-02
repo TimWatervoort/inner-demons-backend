@@ -57,20 +57,20 @@ Now you can go back to your character sheet and look at your goals, weapons and 
 Awesome, now go have fun playing Inner Demons!
 
 For serious though, thanks so much for playing our game.  This game was made by:
-Tim Watervoot
-JP Cornejo
-Tim Remington
+- Tim Watervoot
+- JP Cornejo
+- Tim Remington
 
 The tech we used is:
-HTML
-CSS
-Javascript
-Node.js
-Passport
-Json Web Token
-Express
-Knex
-Joi
-PortgreSQL
-Bootstrap
-and art from the open media library: https://opengameart.org/content/dungeon-crawl-32x32-tiles
+- HTML
+- CSS
+- Javascript
+- Node.js
+- Passport
+- Json Web Token
+- Express
+- Knex
+- Joi
+- PortgreSQL
+- Bootstrap
+-Art from the open media library: https://opengameart.org/content/dungeon-crawl-32x32-tiles
