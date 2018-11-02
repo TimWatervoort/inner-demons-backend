@@ -73,4 +73,4 @@ The tech we used is:
 - Joi
 - PortgreSQL
 - Bootstrap
--Art from the open media library: https://opengameart.org/content/dungeon-crawl-32x32-tiles
+- Art from the open media library: https://opengameart.org/content/dungeon-crawl-32x32-tiles
