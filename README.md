@@ -28,31 +28,31 @@ Log in to go to your character sheet:
 
 Once here, you need to select come personal goals to complete for experience and gold:
 
-![Goals](05_goals)
+![Goals](/screenshots/05_goals)
 
 Now get your first weapon from the shop:
 
-![Shop](03_shop.png)
+![Shop](/screenshots/03_shop.png)
 
 Your attack is made by combining Ally Attack + Weapon Attack. Chaos is the chance for a critical, which does double damage. Once a monster is killed, they become you servant to use in new battles!
 
 Once there, you will need to battle your first creature!  Our recommendation is to defeat the dread quokka Reginald.  He is here:
 
-![The Battle Page](04_battle.png)
+![The Battle Page](/screenshots/04_battle.png)
 
 The battle will look like this:
 
-![Fight](08_fight.png)
+![Fight](/screenshots/08_fight.png)
 
 Hopefully you will win, but if you lose, have no fear, you can always try again!  Health resets between fights, so keep fighting til you get that Matt Damon (or another creature I guess).
 
-![Lost Battle](09_lost.png)
+![Lost Battle](/screenshots/09_lost.png)
 
 Now you can go back to your character sheet and look at your goals, weapons and allies:
 
-![Character Sheet Goals](06_characterSheet_goals.png)
+![Character Sheet Goals](/screenshots/06_characterSheet_goals.png)
 
-![Character Sheet Weapons](07_characterSheet_weapons.png)
+![Character Sheet Weapons](/screenshots/07_characterSheet_weapons.png)
 
 Awesome, now go have fun playing Inner Demons!
 
