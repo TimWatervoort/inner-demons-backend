@@ -20,17 +20,40 @@ When you defeat an enemy, you gain them as an ally, and they can help you in fut
 
 You will start by coming to a page that looks like this:
 
-![Example](template.png)
+![Intro Screen](/screenshots/01_intro.png)
+
+Log in to go to your character sheet:
+
+![Character Sheet](/screenshots/02_characterSheet.png)
+
+Once here, you need to select come personal goals to complete for experience and gold:
+
+![Goals](05_goals)
+
+Now get your first weapon from the shop:
+
+![Shop](03_shop.png)
 
 Your attack is made by combining Ally Attack + Weapon Attack. Chaos is the chance for a critical, which does double damage. Once a monster is killed, they become you servant to use in new battles!
 
 Once there, you will need to battle your first creature!  Our recommendation is to defeat the dread quokka Reginald.  He is here:
 
-![Example](template.png)
+![The Battle Page](04_battle.png)
 
-Tasks completed give you that sweet, sweet gold, which can be used to buy things on the shop tab. We recommend the "Damonblade" as this game is filled with Damons. The store page looks like this:
+The battle will look like this:
 
-![Example](template.png)
+![Fight](08_fight.png)
+
+Hopefully you will win, but if you lose, have no fear, you can always try again!  Health resets between fights, so keep fighting til you get that Matt Damon (or another creature I guess).
+
+![Lost Battle](09_lost.png)
+
+Now you can go back to your character sheet and look at your goals, weapons and allies:
+
+![Character Sheet Goals](06_characterSheet_goals.png)
+
+![Character Sheet Weapons](07_characterSheet_weapons.png)
+
 
 For serious though, thanks so much for playing our game.  This game was made by:
 Tim Watervoot
@@ -41,7 +64,12 @@ The tech we used is:
 HTML
 CSS
 Javascript
+Node.js
+Passport
+Json Web Token
+Express
 Knex
-SQL
+Joi
+PortgreSQL
 Bootstrap
 and art from the open media library: https://opengameart.org/content/dungeon-crawl-32x32-tiles
